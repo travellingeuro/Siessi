@@ -1,3 +1,4 @@
+using Syncfusion.XForms.iOS.BadgeView;
 using Syncfusion.XForms.iOS.Cards;
 using Syncfusion.XForms.iOS.Border;
 using Syncfusion.ListView.XForms.iOS;
@@ -31,6 +32,8 @@ namespace Siessi.iOS
         {
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
 global::Xamarin.Forms.Forms.Init();
+            SfAvatarViewRenderer.Init();
+            SfBadgeViewRenderer.Init();
             SfCardViewRenderer.Init();
             SfListViewRenderer.Init();
             Core.Init();

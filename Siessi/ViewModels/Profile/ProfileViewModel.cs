@@ -1,11 +1,14 @@
 ﻿using Siessi.Models;
+using Siessi.Views.Profile;
+using System;
 using System.Collections.ObjectModel;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace Siessi.ViewModels.Profile
 {
     /// <summary>
-    /// ViewModel for health profile page.
+    /// ViewModel for profile page.
     /// </summary>
     [Preserve(AllMembers = true)]
     public class ProfileViewModel : BaseViewModel
@@ -26,6 +29,8 @@ namespace Siessi.ViewModels.Profile
         /// </summary>
         public ProfileViewModel()
         {
+            Title = "Perfil";
+
             cardItems = new ObservableCollection<Models.Profile>()
             {
                 new Models.Profile()
@@ -61,6 +66,26 @@ namespace Siessi.ViewModels.Profile
             this.Age = "35";
             this.Weight = "159 Ibs";
             this.Height = "165 cm";
+            this.AddProfileCommand = new Command(OnAddProfile);
+        }
+        #endregion
+
+        #region Commands
+        /// <summary>
+        /// Gets the command that is executed when the Modificar button is clicked.
+        /// </summary>
+        public Command AddProfileCommand { get; }
+
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Invoked when the Modificar button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private async void OnAddProfile(object obj)
+        {
+            await Shell.Current.GoToAsync(nameof(AddProfilePage));
         }
 
         #endregion

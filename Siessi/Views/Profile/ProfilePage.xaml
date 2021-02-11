@@ -12,7 +12,7 @@
              xmlns:viewModel="clr-namespace:Siessi.ViewModels.Profile"
              x:Class="Siessi.Views.Profile.ProfilePage"
              NavigationPage.HasNavigationBar="False"
-             Title="Perfil">
+             Title="{Binding Title}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -26,6 +26,11 @@
     <ContentPage.BindingContext>
         <viewModel:ProfileViewModel />
     </ContentPage.BindingContext>
+    
+    <!--Toolbar Item for Profile Page-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Modificar" Command="{Binding AddProfileCommand}" />
+    </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <ScrollView>

@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -209,6 +210,12 @@
     <PackageReference Include="Syncfusion.Xamarin.Core">
       <Version>18.4.0.41</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView">
+      <Version>18.4.0.41</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox">
+      <Version>18.4.0.41</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
       <Version>18.4.0.41</Version>
     </PackageReference>
@@ -234,4 +241,8 @@
   <ItemGroup>
     <BundleResource Include="Resources\ViewMode.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Card.png" />
+  </ItemGroup>
+  <ItemGroup />
 </Project>

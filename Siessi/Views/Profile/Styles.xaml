@@ -4,7 +4,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:control="clr-namespace:Siessi.Controls">
 
     <Color x:Key="Transparent">Transparent</Color>
     <Color x:Key="Dull-Red">#c04848</Color>
@@ -22,8 +24,9 @@
     <x:String x:Key="VoiceCall">&#xe71c;</x:String>
     <x:String x:Key="Notification">&#xe700;</x:String>
     <x:String x:Key="Help">&#xe72c;</x:String>
+    <x:String x:Key="AvatarIcon">&#xe723;</x:String>
 
-    
+
     <Style x:Key="SfGradientViewStyle" TargetType="gradient:SfGradientView">
         <Setter Property="BackgroundBrush">
             <Setter.Value>
@@ -36,6 +39,46 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <!--#region styles for addProfilePage-->    
+    <Style x:Key="EntryTextStyle" TargetType="control:BorderlessEntry">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}"/>
+    </Style>
+
+    <Style x:Key="FormBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-300}"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Padding" Value="12,8"/>
+        <Setter Property="Margin" Value="0,8"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}"/>
+    </Style>
+
+    <Style x:Key="SfButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="BackgroundGradient">
+            <Setter.Value>
+                <gradient:SfLinearGradientBrush>
+                    <gradient:SfLinearGradientBrush.GradientStops>
+                        <gradient:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                        <gradient:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                    </gradient:SfLinearGradientBrush.GradientStops>
+                </gradient:SfLinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <!--#endregion styles for addProfilePage-->
+
+
 
     <!--  Common style for rounded profile image  -->
     <Style x:Key="ProfileBorderStyle" TargetType="border:SfBorder">
