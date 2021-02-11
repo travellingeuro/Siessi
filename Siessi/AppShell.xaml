@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:Siessi.Views"
+       xmlns:profile="clr-namespace:Siessi.Views.Profile"
        Title="Siessi"
        x:Class="Siessi.AppShell">
 
@@ -30,7 +31,7 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="About" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+        <ShellContent Title="Perfil" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate profile:ProfilePage}" />
         <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </TabBar>
 

@@ -1,3 +1,6 @@
+using Syncfusion.XForms.iOS.Cards;
+using Syncfusion.XForms.iOS.Border;
+using Syncfusion.ListView.XForms.iOS;
 using Syncfusion.SfRotator.XForms.iOS;
 using Syncfusion.XForms.iOS.Core;
 using Syncfusion.XForms.iOS.Buttons;
@@ -28,6 +31,10 @@ namespace Siessi.iOS
         {
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
 global::Xamarin.Forms.Forms.Init();
+            SfCardViewRenderer.Init();
+            SfListViewRenderer.Init();
+            Core.Init();
+            SfBorderRenderer.Init();
 SfCheckBoxRenderer.Init();
             SfRotatorRenderer.Init();
             SfButtonRenderer.Init();
