@@ -84,7 +84,7 @@
                            LineHeight="{OnPlatform Android=1.5, Default=-1}" />
 
                     <!-- State and Country -->
-                    <Label Grid.Row="2"
+                    <!--<Label Grid.Row="2"
                            TextColor="{DynamicResource Gray-White}"
                            FontSize="12"
                            FontFamily="{DynamicResource Montserrat-Medium}"
@@ -98,7 +98,7 @@
                                 <Span Text="{Binding Country}"/>
                             </FormattedString>
                         </Label.FormattedText>
-                    </Label>
+                    </Label>-->
                 </Grid>
 
                 <border:SfBorder Grid.Row="1" Margin="0,-129,0,0" Padding="0,61,0,0" BackgroundColor="{DynamicResource Gray-100}" CornerRadius="14,14,0,0"

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Siessi.ViewModels.Profile;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -11,9 +12,27 @@ namespace Siessi.Views.Profile
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddProfilePage : ContentPage
     {
+        AddProfileViewModel vm;
+
         public AddProfilePage()
         {
             InitializeComponent();
+            BindingContext = vm = new AddProfileViewModel();
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            if (vm.IsBusy)
+                return false;
+
+            return base.OnBackButtonPressed();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+        }
+
     }
 }

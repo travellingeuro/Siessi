@@ -169,7 +169,7 @@ namespace Siessi.ViewModels.Onboarding
 
         private async void MoveToNextPage()
         {
-            AppSettings.IsFirstRun = false;
+            AppSettings.IsTermsAccepted = true;
             Application.Current.MainPage = new AppShell();
             // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
             await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");

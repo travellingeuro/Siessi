@@ -6,6 +6,7 @@
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:control="clr-namespace:Siessi.Controls">
 
     <Color x:Key="Transparent">Transparent</Color>
@@ -46,6 +47,19 @@
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
         <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}"/>
+    </Style>
+    <!--Common Style for SfTextInputLayoyt-->
+    <Style x:Key="SfTextInputLayout" TargetType="inputLayout:SfTextInputLayout">
+        <Setter Property="ContainerType" Value="Outlined"/>
+        <Setter Property="OutlineCornerRadius" Value="6"/>
+        <!--<Setter Property="FocusedColor" Value="{DynamicResource Gray-White}"/>-->
+        <!--<Setter Property="HintLabelStyle">
+            <Setter.Value>
+                <inputLayout:LabelStyle
+                    FontFamily="{DynamicResource Montserrat-Bold}"
+                    FontSize="16"/>
+            </Setter.Value>
+        </Setter>-->
     </Style>
 
     <Style x:Key="FormBorderStyle" TargetType="border:SfBorder">

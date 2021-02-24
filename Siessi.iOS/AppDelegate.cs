@@ -1,3 +1,6 @@
+using Syncfusion.XForms.iOS.ComboBox;
+using Syncfusion.XForms.Pickers.iOS;
+using Syncfusion.XForms.iOS.TextInputLayout;
 using Syncfusion.XForms.iOS.BadgeView;
 using Syncfusion.XForms.iOS.Cards;
 using Syncfusion.XForms.iOS.Border;
@@ -32,6 +35,9 @@ namespace Siessi.iOS
         {
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
 global::Xamarin.Forms.Forms.Init();
+SfComboBoxRenderer.Init();
+SfDatePickerRenderer.Init();
+SfTextInputLayoutRenderer.Init();
             SfAvatarViewRenderer.Init();
             SfBadgeViewRenderer.Init();
             SfCardViewRenderer.Init();

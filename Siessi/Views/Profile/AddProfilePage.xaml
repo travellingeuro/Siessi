@@ -2,6 +2,10 @@
 <ContentPage
     x:Class="Siessi.Views.Profile.AddProfilePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+xmlns:sfDatePicker="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms"
+xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
@@ -30,9 +34,9 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="16" Spacing="16">               
+            <StackLayout Padding="16" Spacing="16">
 
-                  <!--To display the Avatar with add icon-->  
+                <!--To display the Avatar with add icon-->
                 <badge:SfBadgeView
                     Padding="0"
                     HeightRequest="90"
@@ -41,7 +45,7 @@
                     WidthRequest="90">
                     <badge:SfBadgeView.Content>
 
-                          <!--Avatar view to display the profile picture-->  
+                        <!--Avatar view to display the profile picture-->
                         <sfavatar:SfAvatarView
                             Padding="13"
                             BackgroundColor="{DynamicResource Gray-200}"
@@ -51,18 +55,19 @@
                             HeightRequest="90"
                             HorizontalOptions="Center"
                             VerticalOptions="Center"
-                            WidthRequest="90">
-                            <sfavatar:SfAvatarView.ImageSource>
+                            WidthRequest="90"
+                            ImageSource="{Binding UserImage}">
+                            <!--<sfavatar:SfAvatarView.ImageSource>
                                 <FontImageSource
                                     FontFamily="{StaticResource FontIcons}"
                                     Glyph="{StaticResource AvatarIcon}"
                                     Size="29"
                                     Color="{DynamicResource Gray-600}" />
-                            </sfavatar:SfAvatarView.ImageSource>
+                            </sfavatar:SfAvatarView.ImageSource>-->
                         </sfavatar:SfAvatarView>
                     </badge:SfBadgeView.Content>
 
-                      <!--Badge setting to display the add icon above the profile picture-->  
+                    <!--Badge setting to display the add icon above the profile picture-->
                     <badge:SfBadgeView.BadgeSettings>
                         <badge:BadgeSetting
                             BackgroundColor="{DynamicResource Gray-100}"
@@ -88,24 +93,32 @@
                     TextColor="{DynamicResource Gray-700}" />
 
                 <!--  First name entry with border  -->
-                <border:SfBorder BorderColor="{Binding Source={x:Reference FirstNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" Style="{StaticResource FormBorderStyle}">
+                <inputLayout:SfTextInputLayout 
+                            Hint="Tu nombre completo"
+                            Style="{StaticResource SfTextInputLayout}">
                     <control:BorderlessEntry
-                        x:Name="FirstNameEntry"
-                        Placeholder="First Name"
+                        x:Name="FirstNameEntry"                       
+                        Text="{Binding Profile.Name}"
                         Style="{StaticResource EntryTextStyle}" />
-                </border:SfBorder>
+                </inputLayout:SfTextInputLayout>
 
-                <!--  Last name entry with border  -->
-                <border:SfBorder
-                    Grid.Column="2"
-                    BorderColor="{Binding Source={x:Reference LastNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
-                    Style="{StaticResource FormBorderStyle}">
-                    <control:BorderlessEntry
-                        x:Name="LastNameEntry"
-                        Placeholder="Last Name"
-                        Style="{StaticResource EntryTextStyle}" />
-                </border:SfBorder>
-                
+                <!--  Birth date entry with border  -->
+                <inputLayout:SfTextInputLayout
+                               Hint="Fecha de nacimiento"
+                               Style="{StaticResource SfTextInputLayout}">
+                    <DatePicker
+						Date="{Binding Profile.BirthDate}"
+						FontFamily="{StaticResource Montserrat-Regular}"
+						FontSize="16"
+						Format="dd MMM yyyy">
+                    </DatePicker>
+                </inputLayout:SfTextInputLayout>
+
+                <!--Gender entry-->
+
+
+
+
                 <!--  Phone number entry with border  -->
                 <border:SfBorder
                     Grid.Column="2"
@@ -115,6 +128,7 @@
                         x:Name="PhoneNoEntry"
                         Keyboard="Telephone" 
                         Placeholder="Phone Number : e.g. XXXX-XXXXXX"
+                        Text="{Binding Profile.ImagePath}"
                         Style="{StaticResource EntryTextStyle}" >
                         <control:BorderlessEntry.Behaviors>
                             <behaviours:EntryMaskedBehavior Mask="(+91)XXXXX-XXXXX" Prefix="(+91)"/>
@@ -126,7 +140,8 @@
                     Margin="0,16,0,0"
                     HorizontalOptions="Center"
                     Style="{StaticResource SfButtonStyle}"
-                    Text="GUARDAR"
+                    Text="{Binding SyncCreateText}"
+                    Command="{Binding UpdateCommand}"
                     WidthRequest="200" />
             </StackLayout>
         </ScrollView>

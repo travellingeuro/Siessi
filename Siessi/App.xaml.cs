@@ -16,7 +16,7 @@ namespace Siessi
         {
             InitializeComponent();
             DependencyService.Register<MockDataStore>();
-            if (!AppSettings.IsFirstRun)
+            if (AppSettings.IsTermsAccepted)
             {
                 MainPage = new AppShell();
             }

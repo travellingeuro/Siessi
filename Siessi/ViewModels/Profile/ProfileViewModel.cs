@@ -1,7 +1,10 @@
-﻿using Siessi.Models;
+﻿using MvvmHelpers.Commands;
+using siessi.Settings;
+using Siessi.Models;
 using Siessi.Views.Profile;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -20,6 +23,9 @@ namespace Siessi.ViewModels.Profile
         /// </summary>
         private ObservableCollection<Models.Profile> cardItems;
 
+        public Models.Profile Profile { get; set; }
+
+        
         #endregion
 
         #region Constructor
@@ -30,6 +36,9 @@ namespace Siessi.ViewModels.Profile
         public ProfileViewModel()
         {
             Title = "Perfil";
+
+            Profile = DataService.GetProfile();
+            Profile.SaveProfileAction = SaveProfile;
 
             cardItems = new ObservableCollection<Models.Profile>()
             {
@@ -66,26 +75,52 @@ namespace Siessi.ViewModels.Profile
             this.Age = "35";
             this.Weight = "159 Ibs";
             this.Height = "165 cm";
-            this.AddProfileCommand = new Command(OnAddProfile);
+            this.AddProfileCommand = new AsyncCommand(OnAddProfile);
+            this.FirstRunCommand = new AsyncCommand(OnFirstRun);
         }
+
+
         #endregion
 
         #region Commands
         /// <summary>
         /// Gets the command that is executed when the Modificar button is clicked.
         /// </summary>
-        public Command AddProfileCommand { get; }
+        public AsyncCommand AddProfileCommand { get; }
+
+        public AsyncCommand FirstRunCommand { get; }
 
         #endregion
 
         #region Methods
         /// <summary>
         /// Invoked when the Modificar button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private async void OnAddProfile(object obj)
+        /// </summary>       
+        private async Task OnAddProfile()
         {
-            await Shell.Current.GoToAsync(nameof(AddProfilePage));
+            await GoToAsync(nameof(AddProfilePage));          
+        }
+
+        private async Task OnFirstRun()
+        {
+            if (!AppSettings.HasProfile)
+            {
+                AppSettings.HasProfile = false;
+                await DisplayAlert("¡Bienvenido!", "Bienvenido a _app. Empieza creando tu perfil. No te preocupes, no se compartirá nada a menos que des permiso expreso");
+                await GoToAsync(nameof(AddProfilePage));
+            }
+            else if (AppSettings.UpdateProfile)
+            {
+                AppSettings.UpdateProfile = false;
+                Profile = DataService.GetProfile();
+                Profile.SaveProfileAction = SaveProfile;
+                OnPropertyChanged(nameof(Profile));
+            }
+        }
+
+        private void SaveProfile()
+        {
+            DataService.SaveProfile(Profile);
         }
 
         #endregion
@@ -136,6 +171,7 @@ namespace Siessi.ViewModels.Profile
         /// Gets or sets the height.
         /// </summary>
         public string Height { get; set; }
+       
 
         #endregion
     }

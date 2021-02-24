@@ -16,5 +16,23 @@ namespace siessi.Settings
             set => Preferences.Set(nameof(IsTermsAccepted), value);
         }
 
+        public static bool HasProfile
+        {
+            get => Preferences.Get(nameof(HasProfile), false);
+            set => Preferences.Set(nameof(HasProfile), value);
+        }
+
+        public static string UserImage
+        {
+            get => Preferences.Get(nameof(UserImage), "user.png");
+            set => Preferences.Set(nameof(UserImage), value);
+        }
+
+        public static bool UpdateProfile
+        {
+            get => Preferences.Get(nameof(UpdateProfile), false);
+            set => Preferences.Set(nameof(UpdateProfile), value);
+        }
+
     }
 }

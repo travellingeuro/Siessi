@@ -1,4 +1,5 @@
-﻿using Siessi.ViewModels;
+﻿using siessi.Settings;
+using Siessi.ViewModels;
 using Siessi.Views;
 using Siessi.Views.Profile;
 using System;
@@ -12,6 +13,7 @@ namespace Siessi
         public AppShell()
         {
             InitializeComponent();
+
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             Routing.RegisterRoute(nameof(AddProfilePage), typeof(AddProfilePage));
