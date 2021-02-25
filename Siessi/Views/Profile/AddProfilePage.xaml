@@ -4,18 +4,16 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
     xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=mscorlib"
-    xmlns:sfDatePicker="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
-    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:control="clr-namespace:Siessi.Controls"
-    xmlns:behaviours="clr-namespace:Siessi.Behaviors"
     xmlns:converter="clr-namespace:Siessi.Converters"
     xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:viewModel="clr-namespace:Siessi.ViewModels.Profile" xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:viewModel="clr-namespace:Siessi.ViewModels.Profile" 
+    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     Title="{Binding Title}"
     BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
@@ -146,14 +144,15 @@
                             <Setter Property="IsVisible" Value="True" />                                                    
                         </DataTrigger>
                     </Label.Triggers>
-                </Label>
-                
+                </Label>                
                 <inputLayout:SfTextInputLayout 
                             IsVisible="{Binding ShowPasswordEntry}"
                             Hint="Contraseña"
+                            EnablePasswordVisibilityToggle="True"
                             Style="{StaticResource SfTextInputLayout}">
                     <control:BorderlessEntry
                         x:Name="PasswordEntry"
+                        IsPassword="True"
                         Placeholder="Mínimo 4 caracteres" 
                         Text="{Binding Profile.Password,Mode=OneTime}"
                         Style="{StaticResource EntryTextStyle}" >
@@ -170,9 +169,11 @@
                 <inputLayout:SfTextInputLayout 
                             IsVisible="{Binding ShowPasswordEntry}"
                             Hint="Repite contraseña"
+                            EnablePasswordVisibilityToggle="True"
                             Style="{StaticResource SfTextInputLayout}">
                     <control:BorderlessEntry                        
                         x:Name="RepeatPassword"  
+                        IsPassword="True"
                         Text="{Binding Profile.Password}"
                         Style="{StaticResource EntryTextStyle}">
                         <control:BorderlessEntry.Behaviors>
@@ -201,6 +202,7 @@
                     HorizontalOptions="Center"
                     Style="{StaticResource SfButtonStyle}"
                     Text="Cambia la contraseña"
+                    Command="{Binding ChangePasswordComand }"
                     IsVisible="{Binding ShowChangePassword}"
                     WidthRequest="200" />
                 

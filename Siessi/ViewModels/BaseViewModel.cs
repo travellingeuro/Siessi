@@ -51,6 +51,10 @@ namespace Siessi.ViewModels
         public Task<bool> DisplayAlert(string title, string message, string accept, string cancel) =>
             Application.Current.MainPage.DisplayAlert(title, message, accept, cancel);
 
+        //Implements a class to display promtps
+        public Task<string> DisplayPromt(string title, string message) =>
+            Application.Current.MainPage.DisplayPromptAsync(title, message, accept: "OK", cancel: "Cancelar");
+
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
 

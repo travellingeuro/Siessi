@@ -38,7 +38,7 @@ namespace Siessi.Services
                      ImagePath=string.Empty,
                      Name= string.Empty,
                      BirthDate=DateTime.Today,
-                     Password=string.Empty,
+                     Password=AppSettings.UserPassword,
                      Gender="Mujer",
                      UserImage = AppSettings.UserImage
                 };
@@ -55,6 +55,7 @@ namespace Siessi.Services
                     SavePreviousProfile();
                 }
                barrel.Add<Profile>("profile", profile, TimeSpan.FromDays(1260));
+               AppSettings.UserPassword = profile.Password;
                AppSettings.HasProfile = true;              
             }
         }

@@ -34,5 +34,11 @@ namespace siessi.Settings
             set => Preferences.Set(nameof(UpdateProfile), value);
         }
 
+        public static string UserPassword
+        {
+            get => Preferences.Get(nameof(UserPassword), "");
+            set => Preferences.Set(nameof(UserPassword), value);
+        }
+
     }
 }

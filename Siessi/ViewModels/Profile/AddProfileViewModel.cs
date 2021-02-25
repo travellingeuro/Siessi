@@ -1,4 +1,6 @@
 ﻿using MvvmHelpers.Commands;
+using siessi.Settings;
+using Siessi.Views.Profile;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +18,8 @@ namespace Siessi.ViewModels.Profile
     {
         #region fields
         public Models.Profile Profile { get; }
+        bool showPasswordEntry;
+        bool showChangePassword;
 
         #endregion
 
@@ -32,6 +36,7 @@ namespace Siessi.ViewModels.Profile
             Profile.SaveProfileAction = SaveProfile;
 
             this.UpdateCommand = new AsyncCommand(OnUpdateMethod);
+            this.ChangePasswordComand = new AsyncCommand(OnChangePasswordMethod);
         }
 
 
@@ -43,6 +48,12 @@ namespace Siessi.ViewModels.Profile
         /// </summary>
         /// 
         public AsyncCommand UpdateCommand { get; }
+        /// <summary>
+        /// Gets the command that is executed when the Cambiar Contrasna button is clicked.
+        /// </summary>
+        /// 
+        public AsyncCommand ChangePasswordComand { get; }
+
 
 
         #endregion
@@ -57,7 +68,7 @@ namespace Siessi.ViewModels.Profile
         }
 
 
-        //This method should take you back to the profilePage. Changes are automaticaly saved.
+        //This method should take you back to the profilePage and save the changes.
         private async Task OnUpdateMethod()
         {
             if (IsBusy)
@@ -101,13 +112,30 @@ namespace Siessi.ViewModels.Profile
             }
         }
 
+        //This method execute procedure to change the password
+        private async Task OnChangePasswordMethod()
+        {
+            if (IsBusy)
+                return;
+            string result = await DisplayPromt("Contraseña Actual", "");
+
+            if (string.IsNullOrWhiteSpace(result))
+                return;
+                
+            if(result != AppSettings.UserPassword)
+            {
+                await DisplayAlert("Contraseña", "La contraseña es errónea");
+                return;
+            }
+            await GoToAsync(nameof(ResetPasswordPage));
+        }
         #endregion
 
         #region Properties
         public string SyncCreateText => siessi.Settings.AppSettings.HasProfile ? "Actualizar" : "Crear";
         public ImageSource UserImage => ImageSource.FromFile(Profile.UserImage);
 
-        bool showPasswordEntry;
+        
         public bool ShowPasswordEntry
         {
             get
@@ -115,22 +143,16 @@ namespace Siessi.ViewModels.Profile
                 var showPasswordEntry = string.IsNullOrWhiteSpace(Profile.Password);
                 ShowChangePassword = !showPasswordEntry;
                 return showPasswordEntry;
-                //for develop purposes
-                //return true;
             }
             set => SetProperty(ref showPasswordEntry, value);
         }
 
-        bool showChangePassword;
+        
         public bool ShowChangePassword
         {
             get => showChangePassword;
             set => SetProperty(ref showChangePassword, value);
         }
-
-        
-
-
 
         #endregion
     }
