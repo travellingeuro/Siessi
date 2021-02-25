@@ -48,6 +48,14 @@
         <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
         <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}"/>
     </Style>
+    <!--Style for invalid entry-->
+    <Style x:Key="InvalidEntryStyle" TargetType="control:BorderlessEntry">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}"/>
+        <Setter Property="FontSize" Value="16"/>               
+        <Setter Property="TextColor" Value="{DynamicResource Red}"/>
+        <Setter Property="Background" Value="{DynamicResource Red}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource Secondary}"/>       
+    </Style>
     <!--Common Style for SfTextInputLayoyt-->
     <Style x:Key="SfTextInputLayout" TargetType="inputLayout:SfTextInputLayout">
         <Setter Property="ContainerType" Value="Outlined"/>

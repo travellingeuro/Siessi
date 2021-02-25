@@ -75,25 +75,28 @@ namespace Siessi.Models
         }
 
         /// <summary>
-        /// Gets or sets the property that has been displays the user password.
-        /// </summary>
-        /// 
-        string password = string.Empty;
-        public string Password
-        {
-            get => password;
-            set => SetProperty(ref password, value, onChanged: SaveProfileAction);
-        }
-        /// <summary>
         /// Gets or sets the property that has been displays the user gender.
         /// </summary>
         /// 
-        string gender = string.Empty;
+        string gender = "Mujer";
         public string Gender
         {
             get => gender;
             set => SetProperty(ref gender, value, onChanged: SaveProfileAction);
         }
+
+        /// <summary>
+        /// Gets or sets the property that has been displays the user password.
+        /// </summary>
+        /// 
+
+        string password = string.Empty;
+        public string Password
+        {
+            get => password;
+            set => SetProperty(ref password, value);
+        }
+
 
         /// <summary>
         /// Gets or sets the property that has been displays the user image.

@@ -18,6 +18,7 @@ namespace Siessi.Views.Profile
         {
             InitializeComponent();
             BindingContext = vm = new AddProfileViewModel();
+            
         }
 
         protected override bool OnBackButtonPressed()
@@ -31,6 +32,7 @@ namespace Siessi.Views.Profile
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            
 
         }
 

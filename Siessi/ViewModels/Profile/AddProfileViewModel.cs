@@ -57,7 +57,7 @@ namespace Siessi.ViewModels.Profile
         }
 
 
-        //Tis method should take you back to the profilePage. Changes are automaticaly saved.
+        //This method should take you back to the profilePage. Changes are automaticaly saved.
         private async Task OnUpdateMethod()
         {
             if (IsBusy)
@@ -72,17 +72,21 @@ namespace Siessi.ViewModels.Profile
                 await DisplayAlert("Fecha de Nacimiento", "Hay que ser mayor para estas cositas maj@");
                 return;
             }
-            //if (string.IsNullOrWhiteSpace(Profile.ImagePath))
-            //{
-            //    await DisplayAlert("ImagePath", "Tu eres tonto que metas una image path retrasad@");
-            //    return;
-            //}
+            if (string.IsNullOrWhiteSpace(Profile.Password))
+            {
+                await DisplayAlert("Contraseña", "Tu eres tonto, que metas una contraseña retrasad@");
+                return;
+            }
+            if (Profile.Password.Length < 4)
+            {
+                await DisplayAlert("Contraseña", "Pero, ¿no has leído que la contraseña es de al menos 4 caracteres, imbécil?");
+                return;
+            }            
 
             try
             {
-                IsBusy = true;
+                IsBusy = true;                
                 DataService.SaveProfile(Profile);
-
             }
             catch (Exception ex)
             {
@@ -102,6 +106,31 @@ namespace Siessi.ViewModels.Profile
         #region Properties
         public string SyncCreateText => siessi.Settings.AppSettings.HasProfile ? "Actualizar" : "Crear";
         public ImageSource UserImage => ImageSource.FromFile(Profile.UserImage);
+
+        bool showPasswordEntry;
+        public bool ShowPasswordEntry
+        {
+            get
+            {
+                var showPasswordEntry = string.IsNullOrWhiteSpace(Profile.Password);
+                ShowChangePassword = !showPasswordEntry;
+                return showPasswordEntry;
+                //for develop purposes
+                //return true;
+            }
+            set => SetProperty(ref showPasswordEntry, value);
+        }
+
+        bool showChangePassword;
+        public bool ShowChangePassword
+        {
+            get => showChangePassword;
+            set => SetProperty(ref showChangePassword, value);
+        }
+
+        
+
+
 
         #endregion
     }

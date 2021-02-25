@@ -39,7 +39,7 @@ namespace Siessi.Services
                      Name= string.Empty,
                      BirthDate=DateTime.Today,
                      Password=string.Empty,
-                     Gender=string.Empty,
+                     Gender="Mujer",
                      UserImage = AppSettings.UserImage
                 };
                 return profile;

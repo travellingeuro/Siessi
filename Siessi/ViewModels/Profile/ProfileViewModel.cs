@@ -112,7 +112,7 @@ namespace Siessi.ViewModels.Profile
             else if (AppSettings.UpdateProfile)
             {
                 AppSettings.UpdateProfile = false;
-                Profile = DataService.GetProfile();
+                Profile = DataService.GetProfile();               
                 Profile.SaveProfileAction = SaveProfile;
                 OnPropertyChanged(nameof(Profile));
             }
