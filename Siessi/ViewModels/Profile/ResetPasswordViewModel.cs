@@ -1,4 +1,8 @@
-﻿using Xamarin.Forms;
+﻿using MvvmHelpers.Commands;
+using Siessi.Views.Profile;
+using System;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace Siessi.ViewModels.Profile
@@ -11,9 +15,13 @@ namespace Siessi.ViewModels.Profile
     {
         #region Fields
 
-        private string newPassword =string.Empty;
+        public Models.Profile Profile { get; }
 
-        private string confirmPassword = string.Empty;
+        private string newPassword;
+
+        private string confirmPassword;
+
+
 
         #endregion
 
@@ -26,9 +34,14 @@ namespace Siessi.ViewModels.Profile
         {
             Title = "Cambia tu contraseña";
 
-            this.SubmitCommand = new Command(this.SubmitClicked);
-            this.SignUpCommand = new Command(this.SignUpClicked);
+            Profile = DataService.GetProfile();
+            Profile.SaveProfileAction = SaveProfile;
+
+            SubmitCommand = new AsyncCommand(OnSubmitMethod,DisableButton);             
         }
+
+
+
 
         #endregion
 
@@ -37,12 +50,8 @@ namespace Siessi.ViewModels.Profile
         /// <summary>
         /// Gets or sets the command that is executed when the Submit button is clicked.
         /// </summary>
-        public Command SubmitCommand { get; set; }
+        public AsyncCommand SubmitCommand { get; set; }
 
-        /// <summary>
-        /// Gets or sets the command that is executed when the Sign Up button is clicked.
-        /// </summary>
-        public Command SignUpCommand { get; set; }
 
         #endregion
 
@@ -72,23 +81,53 @@ namespace Siessi.ViewModels.Profile
 
         #region Methods
 
+        private void SaveProfile()
+        {
+            DataService.SaveProfile(Profile);
+            siessi.Settings.AppSettings.HasProfile = true;
+            siessi.Settings.AppSettings.UpdateProfile = true;
+        }
+
+        private bool DisableButton(object arg)
+        {
+            return false;
+        }
         /// <summary>
         /// Invoked when the Submit button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void SubmitClicked(object obj)
+        private async Task OnSubmitMethod()
         {
-            // Do something
+            if (IsBusy)
+                return;
+
+            if (string.IsNullOrWhiteSpace(NewPassword) || string.IsNullOrWhiteSpace(ConfirmPassword))
+            { 
+                await DisplayAlert("Error", "La contraseña no puede estar en blanco");
+                return;
+            }
+               
+            try
+            {
+                IsBusy = true;
+                Profile.Password = ConfirmPassword;
+                DataService.SaveProfile(Profile);
+            }
+            catch (Exception ex)
+            {
+
+                await DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                IsBusy = false;
+                siessi.Settings.AppSettings.UpdateProfile = true;
+                await GoToAsync("..");
+            }
         }
 
-        /// <summary>
-        /// Invoked when the Sign Up button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void SignUpClicked(object obj)
-        {
-            // Do something
-        }
+
+
 
         #endregion
     }
