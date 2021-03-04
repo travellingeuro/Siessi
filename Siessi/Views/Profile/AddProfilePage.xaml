@@ -41,7 +41,8 @@
                 CaptureMode="Photo"
                 CameraOptions="Front"
                 FlashMode="Off" 
-                Zoom="2"
+                Zoom="1.5"
+                 MinimumWidthRequest="250"
                 IsVisible="{Binding ShowPictureViewer}"
                 HorizontalOptions="CenterAndExpand"                 
                 HeightRequest="200"                      
@@ -57,15 +58,11 @@
                     HorizontalOptions="Center"
                     IsVisible="{Binding ShowPictureViewer}"
                     Style="{StaticResource SfButtonStyle}"
-                    WidthRequest="200"
-                    Clicked="DoCameraThings_Clicked"       
+                    WidthRequest="200"                         
                     Command="{Binding ShutterCommand, Source={x:Reference cameraView}}"
                     IsEnabled="True"
                     Text="Click"> 
                 </buttons:SfButton>
-
-
-
 
                 <!--To display the Avatar with add icon-->
                 <badge:SfBadgeView

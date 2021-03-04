@@ -141,23 +141,35 @@ namespace Siessi.ViewModels.Profile
         {
             ShowPictureViewer = true;
         }
+
         //This mehod takes a picture and store the result in the device and sets the path to the user profile image
         private async Task OnImageTakenMethod(object arg)
         {
             var args = (Xamarin.CommunityToolkit.UI.Views.MediaCapturedEventArgs)arg;
-            var imagebit = args.ImageData;           
-            var stream = new MemoryStream(imagebit);            
-            var store = FileSystem.AppDataDirectory;
-            var location = Path.Combine(store, "profile.png");
-            using (var fileStream = new FileStream(location, FileMode.Create, FileAccess.ReadWrite))
-            {          
-                stream.CopyTo(fileStream);
-            }
-            AppSettings.UserImage = location;
-            Profile.UserImage = location;
+            var rot = args.Rotation;
+
+            var savedPhotoPath= await SavePhotoASync(args.ImageData,rot);
+
+            AppSettings.UserImage = savedPhotoPath;
+            Profile.UserImage = savedPhotoPath;
             ShowPictureViewer = false;
             OnPropertyChanged(nameof(UserImage));
-            await DisplayAlert(Title, "Imagen actualizada");
+        }
+
+        //Awaited method to save the image and return its path
+        private async Task<string> SavePhotoASync(byte[] imageData, double rot)
+        {
+
+            var storePath = FileSystem.AppDataDirectory;
+            var savedPhotoPath = Path.Combine(storePath, "profile.png");            
+           
+            //Save the Image
+            using (var fs = new FileStream(savedPhotoPath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+                await fs.WriteAsync(imageData, 0, imageData.Length);
+            }
+            
+            return savedPhotoPath;      
         }
 
         //This method should take you back to the profilePage and save the changes.

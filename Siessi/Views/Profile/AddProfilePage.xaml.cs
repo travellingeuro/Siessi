@@ -22,11 +22,6 @@ namespace Siessi.Views.Profile
                         
         }
 
-        private void DoCameraThings_Clicked(object sender, System.EventArgs e)
-        {            
-            cameraView.Shutter();              
-        }
-
         protected override bool OnBackButtonPressed()
         {
             if (vm.IsBusy)
