@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Plugin.Fingerprint;
 
 namespace Siessi.Droid
 {
@@ -11,9 +12,12 @@ namespace Siessi.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            CrossFingerprint.SetCurrentActivityResolver(() => this);
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
+            
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

@@ -9,7 +9,7 @@
              xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:svg="clr-namespace:Siessi.Controls"
-             xmlns:viewModel="clr-namespace:Siessi.ViewModels.Profile"
+             xmlns:viewModel="clr-namespace:Siessi.ViewModels.Profile" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="Siessi.Views.Profile.ProfilePage"
              NavigationPage.HasNavigationBar="False"
              Title="{Binding Title}">
@@ -69,7 +69,6 @@
                                                 CachingEnabled="True"/>
                             </Image.Source>
                         </Image>
-
                     </border:SfBorder>
 
                     <!-- Profile Name -->

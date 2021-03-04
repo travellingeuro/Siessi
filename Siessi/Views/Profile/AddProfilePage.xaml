@@ -33,7 +33,39 @@
 
     <ContentPage.Content>
         <ScrollView>
+
             <StackLayout Padding="16" Spacing="16">
+
+                <xct:CameraView
+                x:Name="cameraView"
+                CaptureMode="Photo"
+                CameraOptions="Front"
+                FlashMode="Off" 
+                Zoom="2"
+                IsVisible="{Binding ShowPictureViewer}"
+                HorizontalOptions="CenterAndExpand"                 
+                HeightRequest="200"                      
+                VerticalOptions="FillAndExpand">
+                    <xct:CameraView.Behaviors>
+                        <xct:EventToCommandBehavior EventName="MediaCaptured"
+                                                    Command="{Binding PictureTakenCommand}"/>
+                    </xct:CameraView.Behaviors>
+                </xct:CameraView>
+                <buttons:SfButton
+                    x:Name="doCameraThings"
+                    Margin="0,16,0,0"
+                    HorizontalOptions="Center"
+                    IsVisible="{Binding ShowPictureViewer}"
+                    Style="{StaticResource SfButtonStyle}"
+                    WidthRequest="200"
+                    Clicked="DoCameraThings_Clicked"       
+                    Command="{Binding ShutterCommand, Source={x:Reference cameraView}}"
+                    IsEnabled="True"
+                    Text="Click"> 
+                </buttons:SfButton>
+
+
+
 
                 <!--To display the Avatar with add icon-->
                 <badge:SfBadgeView
@@ -49,20 +81,13 @@
                             Padding="13"
                             BackgroundColor="{DynamicResource Gray-200}"
                             BorderWidth="0"
-                            ContentType="Custom"
+                            ContentType="Custom"                            
                             CornerRadius="45"
                             HeightRequest="90"
                             HorizontalOptions="Center"
                             VerticalOptions="Center"
                             WidthRequest="90"
                             ImageSource="{Binding UserImage}">
-                            <!--<sfavatar:SfAvatarView.ImageSource>
-                                <FontImageSource
-                                    FontFamily="{StaticResource FontIcons}"
-                                    Glyph="{StaticResource AvatarIcon}"
-                                    Size="29"
-                                    Color="{DynamicResource Gray-600}" />
-                            </sfavatar:SfAvatarView.ImageSource>-->
                         </sfavatar:SfAvatarView>
                     </badge:SfBadgeView.Content>
 
@@ -72,7 +97,7 @@
                             BackgroundColor="{DynamicResource Gray-100}"
                             BadgeAnimation="None"
                             BadgeIcon="Add"
-                            BadgePosition="BottomRight"
+                            BadgePosition="BottomRight"                            
                             BadgeType="None"
                             FontSize="15"
                             Stroke="{DynamicResource Gray-White}"
@@ -81,6 +106,9 @@
                             TextPadding="7"
                             Offset="-5,-10" />
                     </badge:SfBadgeView.BadgeSettings>
+                    <badge:SfBadgeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangePictureCommand}"/>
+                    </badge:SfBadgeView.GestureRecognizers>
                 </badge:SfBadgeView>
 
                 <!--  Displaying the label of Add profile picture below to the badgeview  -->
@@ -88,8 +116,13 @@
                     FontFamily="{DynamicResource Montserrat-Medium}"
                     FontSize="14"
                     HorizontalOptions="Center"
-                    Text="Add Profile Picture"
-                    TextColor="{DynamicResource Gray-700}" />
+                    Text="Cambia tu foto de perfil"                    
+                    TextColor="{DynamicResource Gray-700}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangePictureCommand}"/>
+                    </Label.GestureRecognizers>
+                    
+                </Label>
 
                 <!--  First name entry with border  -->
                 <inputLayout:SfTextInputLayout 
@@ -133,7 +166,8 @@
                         </combobox:SfComboBox.ComboBoxSource> 
                     </combobox:SfComboBox>
                 </inputLayout:SfTextInputLayout>
-                
+
+
                 <!--Password entry-->
                 <Label Text="Mínimo 4 caracteres" TextColor="{DynamicResource Red}" IsVisible="False">
                     <Label.Triggers>

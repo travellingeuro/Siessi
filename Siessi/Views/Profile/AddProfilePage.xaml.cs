@@ -1,4 +1,5 @@
-﻿using Siessi.ViewModels.Profile;
+﻿using siessi.Settings;
+using Siessi.ViewModels.Profile;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -18,7 +19,12 @@ namespace Siessi.Views.Profile
         {
             InitializeComponent();
             BindingContext = vm = new AddProfileViewModel();
-            
+                        
+        }
+
+        private void DoCameraThings_Clicked(object sender, System.EventArgs e)
+        {            
+            cameraView.Shutter();              
         }
 
         protected override bool OnBackButtonPressed()
@@ -31,10 +37,7 @@ namespace Siessi.Views.Profile
 
         protected override void OnAppearing()
         {
-            base.OnAppearing();
-            
-
+            base.OnAppearing();  
         }
-
     }
 }

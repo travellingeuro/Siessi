@@ -3,4 +3,9 @@
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
 	<application android:label="Siessi.Android" android:theme="@style/MainTheme" android:icon="@drawable/icon"></application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.USE_FINGERPRINT" />
+  <uses-permission android:name="com.samsung.android.provider.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.CAMERA" />
 </manifest>

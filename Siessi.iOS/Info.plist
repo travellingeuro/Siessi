@@ -44,5 +44,13 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Need your face to provide your &quot;solo si es si&quot; consent</string>
+  <key>NSCameraUsageDescription</key>
+  <string>Necesario para tomar una foto de tu perfil</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>This app needs access to microphone for taking videos.</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>Necesario para elegir una foto de perfil</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>Necesario para elegir fotos y videos</string>
 </dict>
 </plist>

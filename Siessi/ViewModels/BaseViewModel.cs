@@ -55,6 +55,10 @@ namespace Siessi.ViewModels
         public Task<string> DisplayPromt(string title, string message) =>
             Application.Current.MainPage.DisplayPromptAsync(title, message, accept: "OK", cancel: "Cancelar");
 
+        //Implemats a clss to dsiplay actionSheets
+        public Task<string> DisplayOptions(string title, string option1, string option2) =>
+            Application.Current.MainPage.DisplayActionSheet(title, cancel: "cancelar", destruction: null, option1, option2);
+
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
 

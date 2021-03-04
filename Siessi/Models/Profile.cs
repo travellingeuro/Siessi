@@ -106,7 +106,7 @@ namespace Siessi.Models
         public string UserImage
         {
             get => userimage;
-            set => SetProperty(ref userimage, value);
+            set => SetProperty(ref userimage, value, onChanged: SaveProfileAction);
         }
 
 
