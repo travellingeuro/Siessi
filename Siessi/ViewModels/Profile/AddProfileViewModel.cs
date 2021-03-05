@@ -5,13 +5,13 @@ using siessi.Settings;
 using Siessi.Views;
 using Siessi.Views.Profile;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using System.Drawing;
+using SkiaSharp;
 
 namespace Siessi.ViewModels.Profile
 {
@@ -21,15 +21,15 @@ namespace Siessi.ViewModels.Profile
     [Preserve(AllMembers = true)]
     class AddProfileViewModel : BaseViewModel
     {
-        #region fields
+#region fields
         public Models.Profile Profile { get; }
         bool showPasswordEntry;
         bool showChangePassword;
         bool showPictureViewer;
 
-        #endregion
+#endregion
 
-        #region Constructor
+#region Constructor
 
         /// <summary>
         /// Initializes a new instance for the <see cref="AddProfileViewModel" /> class.
@@ -49,9 +49,9 @@ namespace Siessi.ViewModels.Profile
 
         
 
-        #endregion
+#endregion
 
-        #region Commands
+#region Commands
         /// <summary>
         /// Gets the command that is executed when the Modificar button is clicked.
         /// </summary>
@@ -78,9 +78,9 @@ namespace Siessi.ViewModels.Profile
         
 
 
-        #endregion
+#endregion
 
-        #region Methods
+#region Methods
 
         private void SaveProfile()
         {
@@ -147,9 +147,9 @@ namespace Siessi.ViewModels.Profile
         {
             var args = (Xamarin.CommunityToolkit.UI.Views.MediaCapturedEventArgs)arg;
             var rot = args.Rotation;
+            var sis = args.Image;  
 
             var savedPhotoPath= await SavePhotoASync(args.ImageData,rot);
-
             AppSettings.UserImage = savedPhotoPath;
             Profile.UserImage = savedPhotoPath;
             ShowPictureViewer = false;
@@ -159,18 +159,47 @@ namespace Siessi.ViewModels.Profile
         //Awaited method to save the image and return its path
         private async Task<string> SavePhotoASync(byte[] imageData, double rot)
         {
-
             var storePath = FileSystem.AppDataDirectory;
-            var savedPhotoPath = Path.Combine(storePath, "profile.png");            
-           
+            var savedPhotoPath = Path.Combine(storePath, "profile.png");
+            //Rotoates the image
+            SKBitmap original = SKBitmap.Decode(imageData);
+            SKBitmap rotated = RotateMethod(original, rot);            
+            var dataToEncode = rotated.Encode(SKEncodedImageFormat.Png,100);
+            var dataencoded = dataToEncode.ToArray();            
+
             //Save the Image
             using (var fs = new FileStream(savedPhotoPath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
             {
-                await fs.WriteAsync(imageData, 0, imageData.Length);
+                await fs.WriteAsync(dataencoded, 0, dataencoded.Length);
             }
-            
-            return savedPhotoPath;      
+             
+            return savedPhotoPath;  
+        }       
+        
+        //Rotate the picture
+
+        private SKBitmap RotateMethod(SKBitmap original, double rot)
+        {
+            double radians = Math.PI * rot / 180;
+            float sine = (float)Math.Abs(Math.Sin(radians));
+            float cosine = (float)Math.Abs(Math.Cos(radians));
+            int originalWidth = original.Width;
+            int originalHeight = original.Height;
+            int rotatedWidth = (int)(cosine * originalWidth + sine * originalHeight);
+            int rotatedHeight = (int)(cosine * originalHeight + sine * originalWidth);
+
+            var rotated = new SKBitmap(rotatedWidth, rotatedHeight);
+
+            using (var surface = new SKCanvas(rotated))
+            {
+                surface.Translate(rotatedWidth / 2, rotatedHeight / 2);
+                surface.RotateDegrees((float)rot);
+                surface.Translate(-originalWidth / 2, -originalHeight / 2);
+                surface.DrawBitmap(original, new SKPoint());
+            }
+            return rotated;
         }
+
 
         //This method should take you back to the profilePage and save the changes.
         private async Task OnUpdateMethod()
@@ -279,9 +308,9 @@ namespace Siessi.ViewModels.Profile
 
         }
 
-        #endregion
+#endregion
 
-        #region Properties
+#region Properties
         public string SyncCreateText => siessi.Settings.AppSettings.HasProfile ? "Actualizar" : "Crear";
         public ImageSource UserImage => ImageSource.FromFile(Profile.UserImage);
 
@@ -308,6 +337,6 @@ namespace Siessi.ViewModels.Profile
             set => SetProperty(ref showPictureViewer, value);
         }
 
-        #endregion
+#endregion
     }
 }

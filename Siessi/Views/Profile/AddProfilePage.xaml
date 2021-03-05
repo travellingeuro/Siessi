@@ -39,9 +39,9 @@
                 <xct:CameraView
                 x:Name="cameraView"
                 CaptureMode="Photo"
-                CameraOptions="Front"
+                CameraOptions="Front"                    
                 FlashMode="Off" 
-                Zoom="1.5"
+                Zoom="1"
                  MinimumWidthRequest="250"
                 IsVisible="{Binding ShowPictureViewer}"
                 HorizontalOptions="CenterAndExpand"                 

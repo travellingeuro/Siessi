@@ -7,6 +7,10 @@
     <UserSecretsId>b03a440c-be9b-4200-a68d-90ebca06a24a</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;__ANDROID__</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="Images\CaloriesEaten.svg" />
     <None Remove="Images\HeartRate.svg" />
