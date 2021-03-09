@@ -86,8 +86,9 @@
 
                 <border:SfBorder Grid.Row="1" Margin="0,-129,0,0" Padding="0,61,0,0" BackgroundColor="{DynamicResource Gray-100}" CornerRadius="14,14,0,0"
                                  VerticalOptions="Start" BorderWidth="0">
+                    
                     <listView:SfListView SelectionMode="None" ItemSpacing="16,8" ItemSize="74" IsScrollingEnabled="False" AutoFitMode="Height"
-                                         ItemsSource="{Binding CardItems}">
+                                         ItemsSource="{Binding CardItems, Mode=TwoWay}">
                         <listView:SfListView.ItemTemplate>
                             <DataTemplate>
                                 <cards:SfCardView CornerRadius="4" BorderWidth="0" HasShadow="True" WidthRequest="{OnIdiom Phone=343, Default=736}"
@@ -105,16 +106,16 @@
                                         <!-- Category Value -->
                                         <Label Grid.Row="1" FontSize="12" Style="{StaticResource LabelStyle}" 
                                                FontFamily="{DynamicResource Montserrat-Medium}" 
-                                               TextColor="{DynamicResource Gray-700}" HeightRequest="18" Text="{Binding Category}" />
+                                               TextColor="{DynamicResource Gray-700}" HeightRequest="18" Text="{Binding Category,StringFormat='{}{0: años}'}" />
 
                                         <!-- Category Image -->
-                                        <svg:SVGImage Grid.RowSpan="2" 
-                                                      BackgroundColor="Transparent"
-                                                      Source="{Binding ImagePath}"
-                                                      HorizontalOptions="End"
-                                                      VerticalOptions="Center"
-                                                      WidthRequest="32" 
-                                                      HeightRequest="31" />
+                                        <Image Grid.RowSpan="2"
+                                               BackgroundColor="Transparent"
+                                               Source="{Binding ImagePath}"
+                                               HorizontalOptions="End"
+                                               VerticalOptions="Center"
+                                               WidthRequest="32"
+                                               HeightRequest="31"/>
 
                                     </Grid>
                                 </cards:SfCardView>

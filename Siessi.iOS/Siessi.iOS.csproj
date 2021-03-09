@@ -262,4 +262,31 @@
   <ItemGroup>
     <BundleResource Include="Resources\user%403x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\male.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\male%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\male%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\female.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\female%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\female%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\age.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\age%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\age%403x.png" />
+  </ItemGroup>
 </Project>

@@ -44,34 +44,23 @@ namespace Siessi.ViewModels.Profile
             {
                 new Models.Profile()
                 {
-                    Category = "Calories Eaten",
-                    CategoryValue = "13,100",
-                    ImagePath = "CaloriesEaten.svg"
+                    Category = "Sexo",
+                    CategoryValue = Profile.Gender,
+                    ImagePath =Profile.Gender=="Hombre"? "male.png": "female.png"
                 },
                 new Models.Profile()
                 {
-                    Category = "Heart Rate",
-                    CategoryValue = "87 BPM",
-                    ImagePath = "HeartRate.svg"
-                },
-                new Models.Profile()
-                {
-                    Category = "Water Consumed",
-                    CategoryValue = "38.6 L",
-                    ImagePath = "WaterConsumed.svg"
-                },
-                new Models.Profile()
-                {
-                    Category = "Sleep Duration",
-                    CategoryValue = "7.3 H",
-                    ImagePath = "SleepDuration.svg"
+                    Category = "Edad",
+                    CategoryValue = GetAge(),
+                    ImagePath = "age.png"
                 }
             };
-
 
             this.AddProfileCommand = new AsyncCommand(OnAddProfile);
             this.FirstRunCommand = new AsyncCommand(OnFirstRun);
         }
+
+
 
 
         #endregion
@@ -87,6 +76,17 @@ namespace Siessi.ViewModels.Profile
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Invoked when the calcute the age from the birthdate
+        /// </summary>   
+        private string GetAge()
+        {
+            var age = DateTime.Today.Year - Profile.BirthDate.Year;
+            if (Profile.BirthDate.Date > DateTime.Today.AddYears(-age)) age--;
+            return age.ToString();
+        }
+
         /// <summary>
         /// Invoked when the Modificar button is clicked.
         /// </summary>       
