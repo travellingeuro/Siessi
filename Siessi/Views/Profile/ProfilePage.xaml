@@ -65,7 +65,7 @@
                         <Image Aspect="AspectFill"
                                BackgroundColor="{DynamicResource Gray-White}">
                             <Image.Source>
-                                <FileImageSource File="{Binding Profile.UserImage}"/>
+                                <FileImageSource File="{Binding Picture}"/>
 
                             </Image.Source>
                         </Image>
@@ -88,7 +88,7 @@
                                  VerticalOptions="Start" BorderWidth="0">
                     
                     <listView:SfListView SelectionMode="None" ItemSpacing="16,8" ItemSize="74" IsScrollingEnabled="False" AutoFitMode="Height"
-                                         ItemsSource="{Binding CardItems, Mode=TwoWay}">
+                                         ItemsSource="{Binding CardItems}">
                         <listView:SfListView.ItemTemplate>
                             <DataTemplate>
                                 <cards:SfCardView CornerRadius="4" BorderWidth="0" HasShadow="True" WidthRequest="{OnIdiom Phone=343, Default=736}"

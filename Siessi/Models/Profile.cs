@@ -78,7 +78,7 @@ namespace Siessi.Models
         /// Gets or sets the property that has been displays the user gender.
         /// </summary>
         /// 
-        string gender = "Mujer";
+        string gender = string.Empty;
         public string Gender
         {
             get => gender;

@@ -21,9 +21,11 @@ namespace Siessi.ViewModels.Profile
         /// <summary>
         /// To store the health profile data collection.
         /// </summary>
-        private ObservableCollection<Models.Profile> cardItems;
+        public ObservableCollection<Models.Profile> CardItems { get; set; }
 
         public Models.Profile Profile { get; set; }
+
+        public string Picture { get; set; }
 
         
         #endregion
@@ -40,27 +42,14 @@ namespace Siessi.ViewModels.Profile
             Profile = DataService.GetProfile();
             Profile.SaveProfileAction = SaveProfile;
 
-            cardItems = new ObservableCollection<Models.Profile>()
-            {
-                new Models.Profile()
-                {
-                    Category = "Sexo",
-                    CategoryValue = Profile.Gender,
-                    ImagePath =Profile.Gender=="Hombre"? "male.png": "female.png"
-                },
-                new Models.Profile()
-                {
-                    Category = "Edad",
-                    CategoryValue = GetAge(),
-                    ImagePath = "age.png"
-                }
-            };
+            CardItems = PopulateCardItems();
+
+            Picture = AppSettings.UserImage;
+
 
             this.AddProfileCommand = new AsyncCommand(OnAddProfile);
             this.FirstRunCommand = new AsyncCommand(OnFirstRun);
         }
-
-
 
 
         #endregion
@@ -76,6 +65,26 @@ namespace Siessi.ViewModels.Profile
         #endregion
 
         #region Methods
+
+        private ObservableCollection<Models.Profile> PopulateCardItems()
+        {
+           var carditems= new ObservableCollection<Models.Profile>()
+            {
+                new Models.Profile()
+                {
+                    Category = "Sexo",
+                    CategoryValue = Profile.Gender,
+                    ImagePath =Profile.Gender=="Hombre"? "male.png": "female.png"
+                },
+                new Models.Profile()
+                {
+                    Category = "Edad",
+                    CategoryValue = GetAge(),
+                    ImagePath = "age.png"
+                }
+            };
+            return carditems;
+        }
 
         /// <summary>
         /// Invoked when the calcute the age from the birthdate
@@ -108,7 +117,11 @@ namespace Siessi.ViewModels.Profile
                 AppSettings.UpdateProfile = false;
                 Profile = DataService.GetProfile();               
                 Profile.SaveProfileAction = SaveProfile;
+                CardItems = PopulateCardItems();
+                Picture = AppSettings.UserImage;
                 OnPropertyChanged(nameof(Profile));
+                OnPropertyChanged(nameof(CardItems));
+                OnPropertyChanged(nameof(Picture));
             }
         }
 
@@ -126,16 +139,6 @@ namespace Siessi.ViewModels.Profile
         {
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the health profile items collection.
-        /// </summary>
-        public ObservableCollection<Models.Profile> CardItems
-        {
-            get => cardItems;
-
-            set => SetProperty(ref cardItems, value);
         }
 
        
