@@ -2,6 +2,7 @@
 <ContentPage
     x:Class="Siessi.Views.Profile.AddProfilePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
     xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
     xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=mscorlib"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
@@ -35,34 +36,61 @@
         <ScrollView>
 
             <StackLayout Padding="16" Spacing="16">
+                
+                <!--<busyindicator:SfBusyIndicator x:Name="busyindicator" IsVisible="{Binding IsBusy,Mode=TwoWay}" IsEnabled="{Binding IsBusy}" />-->
 
+                <!--Camera View-->
                 <xct:CameraView
                 x:Name="cameraView"
                 CaptureMode="Photo"
                 CameraOptions="Front"                    
                 FlashMode="Off" 
                 Zoom="1"
-                 MinimumWidthRequest="250"
+                 MinimumWidthRequest="350"
                 IsVisible="{Binding ShowPictureViewer}"
                 HorizontalOptions="CenterAndExpand"                 
-                HeightRequest="200"                      
+                HeightRequest="350"                      
                 VerticalOptions="FillAndExpand">
                     <xct:CameraView.Behaviors>
                         <xct:EventToCommandBehavior EventName="MediaCaptured"
                                                     Command="{Binding PictureTakenCommand}"/>
                     </xct:CameraView.Behaviors>
                 </xct:CameraView>
-                <buttons:SfButton
-                    x:Name="doCameraThings"
-                    Margin="0,16,0,0"
-                    HorizontalOptions="Center"
-                    IsVisible="{Binding ShowPictureViewer}"
-                    Style="{StaticResource SfButtonStyle}"
-                    WidthRequest="200"                         
-                    Command="{Binding ShutterCommand, Source={x:Reference cameraView}}"
-                    IsEnabled="True"
-                    Text="Click"> 
-                </buttons:SfButton>
+                
+                <!--Take Picture, change camera labels-->
+                
+                <StackLayout Orientation="Horizontal">
+                    <buttons:SfButton                    
+                        x:Name="doCameraThings"
+                        Margin="0,16,0,0"
+                        HorizontalOptions="Start"
+                        IsVisible="{Binding ShowPictureViewer}"
+                        Style="{StaticResource SfButtonStyle}"
+                        WidthRequest="200"                         
+                        Command="{Binding ShutterCommand, Source={x:Reference cameraView}}"
+                        IsEnabled="True"
+                        Text="Click">
+                    </buttons:SfButton>
+                    <StackLayout HorizontalOptions="EndAndExpand">
+                        <Label
+                            FontFamily="{DynamicResource Montserrat-Medium}"
+                            IsVisible="{Binding ShowPictureViewer}"
+                            FontSize="14"
+                        
+                            HorizontalOptions="End"
+                            Text="Otra cámara"                    
+                            TextColor="{DynamicResource Gray-700}"/>
+                        
+                        <buttons:SfSwitch   
+                            HorizontalOptions="EndAndExpand"
+                            IsVisible="{Binding ShowPictureViewer}"
+                            x:Name="cameraElection"
+                            IsOn="False"
+                            StateChanged="cameraElection_StateChanged">
+                        </buttons:SfSwitch>
+                    </StackLayout>
+
+                </StackLayout>
 
                 <!--To display the Avatar with add icon-->
                 <badge:SfBadgeView
@@ -118,7 +146,7 @@
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ChangePictureCommand}"/>
                     </Label.GestureRecognizers>
-                    
+
                 </Label>
 
                 <!--  First name entry with border  -->
@@ -160,7 +188,7 @@
                                 <x:String>Mujer</x:String>
                                 <x:String>Hombre</x:String>
                             </ListCollection:List>
-                        </combobox:SfComboBox.ComboBoxSource> 
+                        </combobox:SfComboBox.ComboBoxSource>
                     </combobox:SfComboBox>
                 </inputLayout:SfTextInputLayout>
 
@@ -172,10 +200,10 @@
                                      Binding="{Binding Source={x:Reference PasswordBehaviour},
                                                        Path=IsNotValid}"
                                                        Value="True">
-                            <Setter Property="IsVisible" Value="True" />                                                    
+                            <Setter Property="IsVisible" Value="True" />
                         </DataTrigger>
                     </Label.Triggers>
-                </Label>                
+                </Label>
                 <inputLayout:SfTextInputLayout 
                             IsVisible="{Binding ShowPasswordEntry}"
                             Hint="Contraseña"
@@ -215,7 +243,7 @@
                         </control:BorderlessEntry.Behaviors>
                     </control:BorderlessEntry>
                 </inputLayout:SfTextInputLayout>
-                
+
                 <Label Text="Comprueba las contraseñas" TextColor="{DynamicResource Red}" IsVisible="False">
                     <Label.Triggers>
                         <DataTrigger TargetType="Label"
@@ -226,7 +254,7 @@
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-                
+
                 <!--Change Password Button-->
                 <buttons:SfButton
                     Margin="0,16,0,0"                    
@@ -236,12 +264,12 @@
                     Command="{Binding ChangePasswordComand }"
                     IsVisible="{Binding ShowChangePassword}"
                     WidthRequest="200" />
-                
+
                 <!--Separator-->
                 <BoxView   
                  Style="{StaticResource SeparatorStyle}"></BoxView>
-                
-                
+
+
                 <!--Update and Save Button-->
                 <buttons:SfButton
                     Margin="0,16,0,0"                    
@@ -252,12 +280,12 @@
                     WidthRequest="200"
                     IsEnabled="False">
                     <buttons:SfButton.BackgroundGradient>
-                                      <gradient:SfLinearGradientBrush>
-                                        <gradient:SfLinearGradientBrush.GradientStops>
-                                            <gradient:SfGradientStop Offset="0" Color="{DynamicResource Gray-200}" />
-                                            <gradient:SfGradientStop Offset="1" Color="{DynamicResource Gray-300}" />
-                                        </gradient:SfLinearGradientBrush.GradientStops>
-                                    </gradient:SfLinearGradientBrush>                      
+                        <gradient:SfLinearGradientBrush>
+                            <gradient:SfLinearGradientBrush.GradientStops>
+                                <gradient:SfGradientStop Offset="0" Color="{DynamicResource Gray-200}" />
+                                <gradient:SfGradientStop Offset="1" Color="{DynamicResource Gray-300}" />
+                            </gradient:SfLinearGradientBrush.GradientStops>
+                        </gradient:SfLinearGradientBrush>
                     </buttons:SfButton.BackgroundGradient>
                     <buttons:SfButton.Triggers>
                         <DataTrigger TargetType="buttons:SfButton"
@@ -276,7 +304,7 @@
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
-                    </buttons:SfButton.Triggers>                    
+                    </buttons:SfButton.Triggers>
                 </buttons:SfButton>
             </StackLayout>
         </ScrollView>

@@ -3,6 +3,7 @@ using Siessi.ViewModels.Profile;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using Xamarin.CommunityToolkit.UI.Views;
 
 namespace Siessi.Views.Profile
 {
@@ -33,6 +34,11 @@ namespace Siessi.Views.Profile
         protected override void OnAppearing()
         {
             base.OnAppearing();  
+        }
+
+        private void cameraElection_StateChanged(object sender, Syncfusion.XForms.Buttons.SwitchStateChangedEventArgs e)
+        {
+            this.cameraView.CameraOptions = (bool)e.NewValue ? CameraOptions.Back : CameraOptions.Front;           
         }
     }
 }

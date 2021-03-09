@@ -68,13 +68,7 @@ namespace Siessi.ViewModels.Profile
                 }
             };
 
-            this.ProfileImage = App.BaseImageUrl + "ProfileImage16.png";
-            this.ProfileName = "Lela Cortez";
-            this.State = "San Francisco";
-            this.Country = "CA";
-            this.Age = "35";
-            this.Weight = "159 Ibs";
-            this.Height = "165 cm";
+
             this.AddProfileCommand = new AsyncCommand(OnAddProfile);
             this.FirstRunCommand = new AsyncCommand(OnFirstRun);
         }
@@ -127,6 +121,13 @@ namespace Siessi.ViewModels.Profile
 
         #region Properties
 
+        bool isBusy = false;
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set { SetProperty(ref isBusy, value); }
+        }
+
         /// <summary>
         /// Gets or sets the health profile items collection.
         /// </summary>
@@ -137,40 +138,6 @@ namespace Siessi.ViewModels.Profile
             set => SetProperty(ref cardItems, value);
         }
 
-        /// <summary>
-        /// Gets or sets the profile image.
-        /// </summary>
-        public string ProfileImage { get; set; }
-
-        /// <summary>
-        /// Gets or sets the profile name.
-        /// </summary>
-        public string ProfileName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the state.
-        /// </summary>
-        public string State { get; set; }
-
-        /// <summary>
-        /// Gets or sets the country.
-        /// </summary>
-        public string Country { get; set; }
-
-        /// <summary>
-        /// Gets or sets the age.
-        /// </summary>
-        public string Age { get; set; }
-
-        /// <summary>
-        /// Gets or sets the weight.
-        /// </summary>
-        public string Weight { get; set; }
-
-        /// <summary>
-        /// Gets or sets the height.
-        /// </summary>
-        public string Height { get; set; }
        
 
         #endregion

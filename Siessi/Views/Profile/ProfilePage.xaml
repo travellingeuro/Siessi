@@ -9,7 +9,8 @@
              xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:svg="clr-namespace:Siessi.Controls"
-             xmlns:viewModel="clr-namespace:Siessi.ViewModels.Profile" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:viewModel="clr-namespace:Siessi.ViewModels.Profile"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="Siessi.Views.Profile.ProfilePage"
              NavigationPage.HasNavigationBar="False"
              Title="{Binding Title}">
@@ -64,9 +65,8 @@
                         <Image Aspect="AspectFill"
                                BackgroundColor="{DynamicResource Gray-White}">
                             <Image.Source>
-                                <UriImageSource Uri="{Binding ProfileImage}"
-                                                CacheValidity="14"
-                                                CachingEnabled="True"/>
+                                <FileImageSource File="{Binding Profile.UserImage}"/>
+
                             </Image.Source>
                         </Image>
                     </border:SfBorder>
@@ -74,7 +74,7 @@
                     <!-- Profile Name -->
                     <Label Grid.Row="1"
                            Margin="0,0,0,2"
-                           Text="{Binding ProfileName}"
+                           Text="{Binding Profile.Name}"
                            TextColor="{DynamicResource Gray-White}"
                            FontSize="20"
                            FontFamily="{DynamicResource Montserrat-SemiBold}"
@@ -82,22 +82,6 @@
                            VerticalOptions="StartAndExpand"
                            LineHeight="{OnPlatform Android=1.5, Default=-1}" />
 
-                    <!-- State and Country -->
-                    <!--<Label Grid.Row="2"
-                           TextColor="{DynamicResource Gray-White}"
-                           FontSize="12"
-                           FontFamily="{DynamicResource Montserrat-Medium}"
-                           HorizontalOptions="CenterAndExpand"
-                           VerticalOptions="StartAndExpand"
-                           LineHeight="{OnPlatform Android=1.5, Default=-1}">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding State}"/>
-                                <Span Text=" "/>
-                                <Span Text="{Binding Country}"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>-->
                 </Grid>
 
                 <border:SfBorder Grid.Row="1" Margin="0,-129,0,0" Padding="0,61,0,0" BackgroundColor="{DynamicResource Gray-100}" CornerRadius="14,14,0,0"

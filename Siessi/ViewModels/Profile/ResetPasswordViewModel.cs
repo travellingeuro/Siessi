@@ -57,6 +57,13 @@ namespace Siessi.ViewModels.Profile
 
         #region Public property
 
+        bool isBusy = false;
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set { SetProperty(ref isBusy, value); }
+        }
+
         /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the new password from user in the reset password page.
         /// </summary>

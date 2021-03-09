@@ -36,7 +36,7 @@ namespace Siessi.ViewModels.Profile
         /// </summary>
         public AddProfileViewModel()
         {
-            Title = "Modificar Perfil";
+            Title = "Modificar Perfil";           
 
             Profile = DataService.GetProfile();
             Profile.SaveProfileAction = SaveProfile;
@@ -145,25 +145,29 @@ namespace Siessi.ViewModels.Profile
         //This mehod takes a picture and store the result in the device and sets the path to the user profile image
         private async Task OnImageTakenMethod(object arg)
         {
+            IsBusy = true;
             var args = (Xamarin.CommunityToolkit.UI.Views.MediaCapturedEventArgs)arg;
             var rot = args.Rotation;
-            var sis = args.Image;  
-
             var savedPhotoPath= await SavePhotoASync(args.ImageData,rot);
             AppSettings.UserImage = savedPhotoPath;
             Profile.UserImage = savedPhotoPath;
-            ShowPictureViewer = false;
+            ShowPictureViewer = false;            
             OnPropertyChanged(nameof(UserImage));
+            IsBusy = false;
+            
         }
 
         //Awaited method to save the image and return its path
         private async Task<string> SavePhotoASync(byte[] imageData, double rot)
         {
+            
             var storePath = FileSystem.AppDataDirectory;
             var savedPhotoPath = Path.Combine(storePath, "profile.png");
-            //Rotoates the image
+            //Rotates the image
             SKBitmap original = SKBitmap.Decode(imageData);
-            SKBitmap rotated = RotateMethod(original, rot);            
+
+            SKBitmap rotated = await RotateMethod(original, rot); 
+            
             var dataToEncode = rotated.Encode(SKEncodedImageFormat.Png,100);
             var dataencoded = dataToEncode.ToArray();            
 
@@ -172,14 +176,15 @@ namespace Siessi.ViewModels.Profile
             {
                 await fs.WriteAsync(dataencoded, 0, dataencoded.Length);
             }
-             
+            
             return savedPhotoPath;  
         }       
         
         //Rotate the picture
 
-        private SKBitmap RotateMethod(SKBitmap original, double rot)
+        private async Task<SKBitmap> RotateMethod(SKBitmap original, double rot)
         {
+            await Task.Delay(100);
             double radians = Math.PI * rot / 180;
             float sine = (float)Math.Abs(Math.Sin(radians));
             float cosine = (float)Math.Abs(Math.Cos(radians));
@@ -197,7 +202,8 @@ namespace Siessi.ViewModels.Profile
                 surface.Translate(-originalWidth / 2, -originalHeight / 2);
                 surface.DrawBitmap(original, new SKPoint());
             }
-            return rotated;
+            
+           return rotated;
         }
 
 
@@ -231,6 +237,7 @@ namespace Siessi.ViewModels.Profile
             {
                 IsBusy = true;                
                 DataService.SaveProfile(Profile);
+                OnPropertyChanged(nameof(Profile));
             }
             catch (Exception ex)
             {
@@ -239,8 +246,8 @@ namespace Siessi.ViewModels.Profile
             finally
             {
                 IsBusy = false;
-                siessi.Settings.AppSettings.UpdateProfile = true;
-                await GoToAsync("..");
+                AppSettings.UpdateProfile = true;
+                await GoToAsync($"//{nameof(AboutPage)}");
             }
         }
 
@@ -313,6 +320,13 @@ namespace Siessi.ViewModels.Profile
 #region Properties
         public string SyncCreateText => siessi.Settings.AppSettings.HasProfile ? "Actualizar" : "Crear";
         public ImageSource UserImage => ImageSource.FromFile(Profile.UserImage);
+
+        bool isBusy = false;
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set { SetProperty(ref isBusy, value); }
+        }
 
         public bool ShowPasswordEntry
         {

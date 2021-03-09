@@ -216,6 +216,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView">
       <Version>18.4.0.44</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
+      <Version>18.4.0.44</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox">
       <Version>18.4.0.44</Version>
     </PackageReference>

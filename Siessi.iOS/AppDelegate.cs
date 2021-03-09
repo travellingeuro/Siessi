@@ -1,3 +1,4 @@
+using Syncfusion.SfBusyIndicator.XForms.iOS;
 using Syncfusion.XForms.iOS.ComboBox;
 using Syncfusion.XForms.Pickers.iOS;
 using Syncfusion.XForms.iOS.TextInputLayout;
@@ -35,6 +36,8 @@ namespace Siessi.iOS
         {
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
 global::Xamarin.Forms.Forms.Init();
+SfBusyIndicatorRenderer.Init();
+SfSwitchRenderer.Init();
 SfComboBoxRenderer.Init();
 SfDatePickerRenderer.Init();
 SfTextInputLayoutRenderer.Init();
