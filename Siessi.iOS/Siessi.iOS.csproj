@@ -289,4 +289,13 @@
   <ItemGroup>
     <BundleResource Include="Resources\age%403x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\consent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\consent%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\consent%403x.png" />
+  </ItemGroup>
 </Project>

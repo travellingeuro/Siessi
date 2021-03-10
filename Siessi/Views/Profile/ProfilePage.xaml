@@ -101,12 +101,12 @@
                                         </Grid.RowDefinitions>
 
                                         <!-- Category -->
-                                        <Label Text="{Binding CategoryValue}" Style="{StaticResource LabelStyle}" />
+                                        <Label Text="{Binding CategoryValue ,StringFormat='{0} años'}" Style="{StaticResource LabelStyle}" />
 
                                         <!-- Category Value -->
                                         <Label Grid.Row="1" FontSize="12" Style="{StaticResource LabelStyle}" 
                                                FontFamily="{DynamicResource Montserrat-Medium}" 
-                                               TextColor="{DynamicResource Gray-700}" HeightRequest="18" Text="{Binding Category,StringFormat='{}{0: años}'}" />
+                                               TextColor="{DynamicResource Gray-700}" HeightRequest="18" Text="{Binding Category}" />
 
                                         <!-- Category Image -->
                                         <Image Grid.RowSpan="2"

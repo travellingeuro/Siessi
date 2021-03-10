@@ -26,6 +26,8 @@ namespace Siessi.Services
             myCI = new CultureInfo("es-ES", true);
         }
 
+        #region method_for_Profile       
+
         public Profile GetProfile()
         {
             lock (locker)
@@ -67,5 +69,48 @@ namespace Siessi.Services
             var now = DateTime.Now.ToString();
             barrel.Add<Profile>($"validuntil_{now}", previousprofile, TimeSpan.FromDays(1260));
         }
+        #endregion
+
+        #region methods_for_Consent
+        public Consent GetConsent()
+        {
+            lock (locker)
+            {
+                var consent = barrel.Get<Consent>("consent");
+                consent ??= new Consent
+                {
+                    Model=string.Empty,
+                    Manufacturer=string.Empty,
+                    DeviceName=string.Empty,
+                    Location=new Location(),
+                    TimeStamp=DateTimeOffset.Now,
+                    Name=string.Empty,
+                    BirthDate=DateTime.Now
+                };
+                return consent;
+            }
+        }
+
+        public void SaveConsent(Consent consent)
+        {
+            lock (locker)
+            {
+                if (barrel.Exists("consent"))
+                {
+                    SavePreviousConsent();
+                }
+                barrel.Add<Consent>("consent", consent, TimeSpan.FromDays(1260));
+            }
+        }
+
+
+        public void SavePreviousConsent()
+        {
+            var previousconsent = barrel.Get<Consent>("consent");
+            var now = DateTime.Now.ToString();
+            barrel.Add<Consent>($"validuntil_{now}", previousconsent, TimeSpan.FromDays(1260));
+        }
+        #endregion
+
     }
 }
