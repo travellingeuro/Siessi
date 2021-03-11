@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -72,24 +73,20 @@ namespace Siessi.Services
         #endregion
 
         #region methods_for_Consent
+
         public Consent GetConsent()
-        {
-            lock (locker)
+        {     
+            var consent = new Consent
             {
-                var consent = barrel.Get<Consent>("consent");
-                consent ??= new Consent
-                {
-                    Model=string.Empty,
-                    Manufacturer=string.Empty,
-                    DeviceName=string.Empty,
-                    Location=new Location(),
-                    TimeStamp=DateTimeOffset.Now,
-                    Name=string.Empty,
-                    BirthDate=DateTime.Now
-                };
-                return consent;
-            }
+                Model= DeviceInfo.Model,
+                Manufacturer=DeviceInfo.Manufacturer,
+                DeviceName=DeviceInfo.Name,
+                Location=new Location(),
+                TimeStamp=DateTimeOffset.Now                   
+            };
+            return consent;            
         }
+
 
         public void SaveConsent(Consent consent)
         {
@@ -108,9 +105,54 @@ namespace Siessi.Services
         {
             var previousconsent = barrel.Get<Consent>("consent");
             var now = DateTime.Now.ToString();
-            barrel.Add<Consent>($"validuntil_{now}", previousconsent, TimeSpan.FromDays(1260));
+            barrel.Add<Consent>($"consent_{now}", previousconsent, TimeSpan.FromDays(1260));
         }
         #endregion
 
+
+
+        #region Method_for_Location
+
+        public async Task<Location> GetLocation()
+        {
+            try
+            {
+                var location = await Geolocation.GetLastKnownLocationAsync();
+                if (location == null)
+                {
+                    location = await Geolocation.GetLocationAsync(new GeolocationRequest
+                    {
+                        DesiredAccuracy = GeolocationAccuracy.High,
+                         Timeout=TimeSpan.FromMilliseconds(5000)
+                    });
+                }
+                if (location == null)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Location", "Unable to find location, use default","OK");
+                    location = new Location(0, 0);
+                    return location;
+                }
+                return location;                    
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                await Application.Current.MainPage.DisplayAlert("Faild", fnsEx.Message, "OK");
+                var location = new Location(0, 0);
+                return location;
+            }
+            catch (PermissionException pEx)
+            {
+                await Application.Current.MainPage.DisplayAlert("Faild", pEx.Message, "OK");
+                var location = new Location(0, 0);
+                return location;
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Faild", ex.Message, "OK");
+                var location = new Location(0, 0);
+                return location;
+            }
+        }
+        #endregion
     }
 }

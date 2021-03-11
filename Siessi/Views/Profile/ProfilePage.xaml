@@ -101,7 +101,7 @@
                                         </Grid.RowDefinitions>
 
                                         <!-- Category -->
-                                        <Label Text="{Binding CategoryValue ,StringFormat='{0} años'}" Style="{StaticResource LabelStyle}" />
+                                        <Label Text="{Binding CategoryValue}" Style="{StaticResource LabelStyle}" />
 
                                         <!-- Category Value -->
                                         <Label Grid.Row="1" FontSize="12" Style="{StaticResource LabelStyle}" 

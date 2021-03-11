@@ -3,6 +3,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:Siessi.Views"
        xmlns:profile="clr-namespace:Siessi.Views.Profile"
+       xmlns:consent="clr-namespace:Siessi.Views.Consent"
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        mc:Ignorable="d"
        Title="Siessi"
@@ -34,10 +35,11 @@
 
     <TabBar x:Name="MainTabBar">
         <ShellContent Title="Perfil" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate profile:ProfilePage}" />
-        
-        <ShellContent Title="Consentimiento" Icon="consent.png" ContentTemplate="{DataTemplate local:LoginPage}" />        
+        <Tab Title="Consentimiento" Icon="consent.png">
+            <ShellContent Title="Mujer" Icon="consent.png" ContentTemplate="{DataTemplate consent:FemalePage}" />
+            <ShellContent Title="Hombre" Icon="consent.png" ContentTemplate="{DataTemplate local:ItemsPage}" />            
+        </Tab>                
         <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
-
     </TabBar>
 
     <!--

@@ -27,7 +27,7 @@ namespace Siessi.Models
         public string Model 
         { 
             get => model;
-            set => SetProperty(ref model, value, onChanged: SaveConsentAction);
+            set => SetProperty(ref model, value);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Siessi.Models
         public string Manufacturer
         {
             get => manufacturer;
-            set => SetProperty(ref manufacturer, value, onChanged: SaveConsentAction);
+            set => SetProperty(ref manufacturer, value);
         }
 
         /// <summary>
@@ -48,19 +48,19 @@ namespace Siessi.Models
         string deviceName = string.Empty;
         public string DeviceName
         {
-            get => DeviceName;
-            set => SetProperty(ref deviceName, value, onChanged: SaveConsentAction);
+            get => deviceName;
+            set => SetProperty(ref deviceName, value);
         }
 
         /// <summary>
         /// Gets or sets the property that has been displays the Location.
         /// </summary>
         /// 
-        Location location = new Location();
+        Location location = new Location(0,0);
         public Location Location
         {
             get => location;
-            set => SetProperty(ref location, value, onChanged: SaveConsentAction);
+            set => SetProperty(ref location, value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Siessi.Models
         public DateTimeOffset TimeStamp
         {
             get => timeStamp;
-            set => SetProperty(ref timeStamp, value, onChanged: SaveConsentAction);
+            set => SetProperty(ref timeStamp, value);
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Siessi.Models
         public string Name
         {
             get => name;
-            set => SetProperty(ref name, value, onChanged: SaveConsentAction);
+            set => SetProperty(ref name, value);
         }
 
         /// <summary>
@@ -93,7 +93,18 @@ namespace Siessi.Models
         public DateTime BirthDate
         {
             get=> birthDate;
-            set => SetProperty(ref birthDate, value, onChanged: SaveConsentAction);
+            set => SetProperty(ref birthDate, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the property that has been displays the message
+        /// </summary>
+        /// 
+        string message = string.Empty;
+        public string Message
+        {
+            get => message;
+            set => SetProperty(ref message, value);
         }
 
         #endregion

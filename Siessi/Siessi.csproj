@@ -40,6 +40,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.4.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.4.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="18.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="18.4.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="18.4.0.44" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.3" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
@@ -51,6 +52,9 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Consent\FemalePage.xaml.cs">
+      <DependentUpon>FemalePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Profile\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
@@ -66,6 +70,12 @@
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Themes\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Consent\FemalePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Consent\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Onboarding\OnBoardingAnimationPage.xaml">

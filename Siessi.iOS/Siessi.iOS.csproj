@@ -228,6 +228,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfPicker">
       <Version>18.4.0.44</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfRating">
+      <Version>18.4.0.44</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRotator">
       <Version>18.4.0.44</Version>
     </PackageReference>
