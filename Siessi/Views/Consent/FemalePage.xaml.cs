@@ -17,8 +17,7 @@ namespace Siessi.Views.Consent
         public FemalePage()
         {
             InitializeComponent();
-            BindingContext = vm = new FemalePageViewModel();
-            this.ProductImage.Source = App.BaseImageUrl + "Image1.png";
+            BindingContext = vm = new FemalePageViewModel();            
         }
 
         protected override bool OnBackButtonPressed()

@@ -1,4 +1,9 @@
-﻿using System;
+﻿using MvvmHelpers.Commands;
+using Newtonsoft.Json;
+using Plugin.Fingerprint;
+using Plugin.Fingerprint.Abstractions;
+using siessi.Settings;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -28,11 +33,8 @@ namespace Siessi.ViewModels.Consent
             Consent.SaveConsentAction = SaveConsent;
 
             Profile = DataService.GetProfile();
-            Profile.SaveProfileAction = SaveProfile;
 
-            
-            this.UploadCommand = new Command<object>(this.OnUploadTapped);
-            this.GenerateCommand = new Command<object>(this.OnGenerateMethod);
+            this.GenerateCommand = new AsyncCommand(this.OnGenerateMethod);
         }
 
         #endregion
@@ -40,34 +42,21 @@ namespace Siessi.ViewModels.Consent
         #region Command
 
         /// <summary>
-        /// Gets or sets the value for upload command.
-        /// </summary>
-        public Command<object> UploadCommand { get; set; }
-
-        /// <summary>
         /// Gets or sets the value for submit command.
         /// </summary>
-        public Command<object> GenerateCommand { get; set; }
+        public AsyncCommand GenerateCommand { get; set; }
 
         #endregion
 
         #region Methods
 
-        /// <summary>
-        /// Invoked when the Upload button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void OnUploadTapped(object obj)
-        {
-            // Do something
-        }
+ 
 
 
         private async Task<Location> MyLocation()
         {
             Location location= await DataService.GetLocation();
-            return location;
-              
+            return location;              
         }
 
 
@@ -75,14 +64,76 @@ namespace Siessi.ViewModels.Consent
         /// Invoked when the Submit button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private async void OnGenerateMethod(object obj)
+        private async Task OnGenerateMethod()
+        {
+            bool isFingerprintAvailable = await CrossFingerprint.Current.IsAvailableAsync(false);
+            if (isFingerprintAvailable)
+            {
+                var option = await DisplayOptions("Identifícate", "Contraseña", "Huella");
+                switch (option)
+                {
+                    case "Contraseña":
+                        await AuthWithPassword();
+                        break;
+                    case "Huella":
+                        await AuthWithFingerprint();
+                        break;
+                    default:
+                        await DisplayAlert("Identificación errónea", "error en la identificación");
+                        break;
+                }
+            }
+            else
+            {
+                await AuthWithPassword();
+            }
+        }
+
+        //Method execute a confirmation of the actual password before allow to reset it
+        private async Task AuthWithPassword()
+        {
+            if (IsBusy)
+                return;
+            string result = await DisplayPromt("Contraseña Actual", "");
+
+            if (string.IsNullOrWhiteSpace(result))
+                return;
+
+            if (result != AppSettings.UserPassword)
+            {
+                await DisplayAlert("Contraseña", "La contraseña es errónea");
+                return;
+            }
+
+            QRContent();
+        }
+        //Method execute fingerprint checking before allow to reset the password
+        private async Task AuthWithFingerprint()
+        {
+            AuthenticationRequestConfiguration conf = new AuthenticationRequestConfiguration("Identifícate",
+                                                                                             "Para otorgar sólo si es si");
+
+            var authResult = await CrossFingerprint.Current.AuthenticateAsync(conf);
+            if (authResult.Authenticated)
+            {
+                //Success  
+                QRContent();
+            }
+            else
+            {
+                await DisplayAlert("Error", "Authentication failed");
+            }
+
+        }
+
+        private async void QRContent()
         {
             //Checks
             if (IsBusy)
                 return;
             if (string.IsNullOrWhiteSpace(Profile.Name))
             {
-                await DisplayAlert("Nombre", "Qué pasa, que no tienes nombre,¿no?");
+                await DisplayAlert("Nombre", "Tienes que crear un perfil");
                 return;
             }
             if (Profile.BirthDate > DateTime.Today.AddYears(-18))
@@ -98,6 +149,7 @@ namespace Siessi.ViewModels.Consent
             //Crear otorgamiento
             Consent.Name = Profile.Name;
             Consent.BirthDate = Profile.BirthDate;
+            Consent.Message = Message;
             try
             {
                 IsBusy = true;
@@ -108,21 +160,27 @@ namespace Siessi.ViewModels.Consent
                 IsBusy = false;
             }
             DataService.SaveConsent(Consent);
+            Message = string.Empty;
+            //Json string to include in the QR code
+            QRCode = JsonConvert.SerializeObject(Consent);
+            IsQRVisible = true;
+            Device.StartTimer(TimeSpan.FromSeconds(60), () =>
+            {
+                IsQRVisible = false;
+                OnPropertyChanged(nameof(IsQRVisible));
+                return false; 
+            });
         }
 
         private void SaveConsent()
         {
             DataService.SaveConsent(Consent);
-
         }
 
-        private void SaveProfile()
-        {
-            DataService.SaveProfile(Profile);
-        }
         #endregion
 
         #region Properties
+
         bool isBusy = false;
         public bool IsBusy
         {
@@ -132,9 +190,28 @@ namespace Siessi.ViewModels.Consent
 
         public bool IsFemale => Profile.Gender == "Mujer";
 
-        
 
-        
+        string qrCode = "void";
+        public string QRCode
+        {
+            get => qrCode;
+            set => SetProperty(ref qrCode, value);
+        }
+
+
+        bool isQRVisible;
+        public bool IsQRVisible
+        {
+            get => isQRVisible;
+            set => SetProperty(ref isQRVisible, value);
+        }
+
+        string message = string.Empty;
+        public string Message
+        {
+            get => message;
+            set => SetProperty(ref message, value);
+        }
 
         #endregion
 

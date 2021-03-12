@@ -36,23 +36,24 @@ namespace Siessi.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
-global::Xamarin.Forms.Forms.Init();
+            global::Xamarin.Forms.Forms.Init();
             SfRatingRenderer.Init();
-SfBusyIndicatorRenderer.Init();
-SfSwitchRenderer.Init();
-SfComboBoxRenderer.Init();
-SfDatePickerRenderer.Init();
-SfTextInputLayoutRenderer.Init();
+            SfBusyIndicatorRenderer.Init();
+            SfSwitchRenderer.Init();
+            SfComboBoxRenderer.Init();
+            SfDatePickerRenderer.Init();
+            SfTextInputLayoutRenderer.Init();
             SfAvatarViewRenderer.Init();
             SfBadgeViewRenderer.Init();
             SfCardViewRenderer.Init();
             SfListViewRenderer.Init();
             Core.Init();
             SfBorderRenderer.Init();
-SfCheckBoxRenderer.Init();
+            SfCheckBoxRenderer.Init();
             SfRotatorRenderer.Init();
             SfButtonRenderer.Init();
             SfGradientViewRenderer.Init();
+            ZXing.Net.Mobile.Forms.iOS.Platform.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

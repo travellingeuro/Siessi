@@ -5,8 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:control="clr-namespace:Siessi.Controls"
-    xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
-    xmlns:viewModel="clr-namespace:Siessi.ViewModels.Consent"
+    xmlns:viewModel="clr-namespace:Siessi.ViewModels.Consent" 
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
+    xmlns:zxcm="clr-namespace:ZXing.Common;assembly=zxing.portable"
     BackgroundColor="{DynamicResource Gray-100}"
     Title="{Binding Title}"    
     NavigationPage.HasNavigationBar="False">
@@ -27,9 +28,9 @@
     <ContentPage.Content>
         <ScrollView>
 
-            <StackLayout Spacing="16">
+            <StackLayout Spacing="16" >
 
-                <StackLayout Padding="16" BackgroundColor="{StaticResource Gray-White}">
+                <StackLayout Padding="16" BackgroundColor="{StaticResource Gray-White}" IsVisible="{Binding IsFemale}">
 
                     <!--  Title  -->
                     <Label
@@ -38,112 +39,50 @@
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource LabelStyle}"
                         Text="Crea tu código QR"
-                        TextColor="{DynamicResource Gray-900}" />
+                        TextColor="{DynamicResource Gray-900}">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label"
+                                         Binding="{Binding IsQRVisible}"
+                                         Value="True">
+                                <Setter Property="Text" Value="Este código caducará en 1 minuto"/>
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
 
                 </StackLayout>
-
-                <Grid
-                    IsVisible="{Binding IsFemale}"
-                    Padding="16"
-                    BackgroundColor="{DynamicResource Gray-White}"
-                    ColumnSpacing="0"
-                    RowSpacing="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <!--  Product image  -->
-                    <Image
-                        x:Name="ProductImage"
-                        Grid.RowSpan="2"
-                        Aspect="AspectFill"
-                        BackgroundColor="{DynamicResource Gray-200}"
-                        HeightRequest="120"
-                        WidthRequest="100" />
-
-                    <!--  Product name label  -->
-                    <Label
-                        Grid.Column="1"
-                        Margin="16,0,0,16"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                        FontSize="16"
-                        Style="{StaticResource LabelStyle}"
-                        Text="Full-Length Skirt"
-                        TextColor="{DynamicResource Gray-900}" />
-
-                    <!--  Rating for the product  -->
-                    <rating:SfRating
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Margin="16,0"
-                        HorizontalOptions="StartAndExpand"
-                        ItemSize="27"
-                        ItemSpacing="5"
-                        RatingSettings="{StaticResource RatingSettings}"
-                        ReadOnly="False"
-                        Style="{StaticResource SfRatingStyle}"
-                        VerticalOptions="Start" />
-
-                </Grid>
-
-                <Grid BackgroundColor="{DynamicResource Gray-White}" RowSpacing="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <Label
-                        Margin="16"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                        FontSize="16"
-                        Style="{StaticResource LabelStyle}"
-                        Text="Add Photo or Video"
-                        TextColor="{DynamicResource Gray-900}" />
-
-                    <BoxView Grid.Row="1" Style="{StaticResource BoxViewStyle}" />
-
-                    <!--  Button to upload product photos  -->
-                    <buttons:SfButton
-                        x:Name="UploadButton"
-                        Grid.Row="2"
-                        Margin="0,24"
-                        BorderWidth="1"
-                        Command="{Binding UploadCommand}"
-                        CommandParameter="{x:Reference UploadButton}"
-                        CornerRadius="4"
-                        HeightRequest="70"
-                        Style="{StaticResource SfButtonStyle}"
-                        WidthRequest="165">
-                        <Label
-                            FontFamily="{StaticResource Montserrat-Medium}"
-                            FontSize="14"
-                            HorizontalOptions="Center"
-                            HorizontalTextAlignment="Center"
-                            Style="{StaticResource LabelStyle}"
-                            Text="Click here to upload" />
-                    </buttons:SfButton>
-
-                </Grid>
-
-                <Grid BackgroundColor="{DynamicResource Gray-White}" RowSpacing="0">
+                
+                <Label IsVisible="false" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label"
+                                     Binding="{Binding IsFemale}"
+                                     Value="False">
+                            <Setter Property="Text" Value="Solo para mujeres"/>
+                            <Setter Property="IsVisible" Value="True"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+              
+                <!--Message-->
+                <Grid BackgroundColor="{DynamicResource Gray-White}" RowSpacing="0" IsVisible="{Binding IsFemale}">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
+                    <Grid.Triggers>
+                        <DataTrigger TargetType="Grid" 
+                                     Binding="{Binding IsQRVisible}" 
+                                     Value="True">
+                            <Setter Property="IsVisible" Value="False"/>
+                        </DataTrigger>
+                    </Grid.Triggers>
 
                     <Label
                         Margin="16"
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         Style="{StaticResource LabelStyle}"
-                        Text="Write your Review"
+                        Text="Mensaje (opcional)"
                         TextColor="{DynamicResource Gray-900}" />
 
                     <BoxView Grid.Row="1" Style="{StaticResource BoxViewStyle}" />
@@ -157,15 +96,62 @@
                         HeightRequest="100"
                         HorizontalOptions="FillAndExpand"
                         Placeholder="Description"
+                        Text="{Binding Message}"
                         PlaceholderColor="{DynamicResource Gray-700}"
                         TextColor="{DynamicResource Gray-700}"
                         VerticalOptions="StartAndExpand" />
-
                 </Grid>
+                
+                <!--Terms and Conditions-->
+                <Grid BackgroundColor="{DynamicResource Gray-White}" RowSpacing="0" IsVisible="{Binding IsFemale}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />                        
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Triggers>
+                        <DataTrigger TargetType="Grid" 
+                                     Binding="{Binding IsQRVisible}" 
+                                     Value="True">
+                            <Setter Property="IsVisible" Value="False"/>
+                        </DataTrigger>
+                    </Grid.Triggers>
+                    <BoxView Grid.Row="0" Style="{StaticResource BoxViewStyle}" />
+                    <buttons:SfCheckBox 
+                        x:Name="checkBox"
+                        Grid.Row="1"                        
+                        HorizontalOptions="End"
+                        Text="He leído y acepto los términos y condiciones">
+                    </buttons:SfCheckBox>
+                </Grid> 
+                <StackLayout                    
+                    VerticalOptions="CenterAndExpand"
+                    IsVisible="{Binding IsQRVisible}"
+                    Padding="16"
+                    BackgroundColor="{DynamicResource Gray-White}">
+
+
+                    <!--QR CODE-->
+                    <zxing:ZXingBarcodeImageView x:Name="BarcodeImageView"    
+                                                 HeightRequest="300"
+                                                 WidthRequest="300"
+                                                 BarcodeFormat="QR_CODE"                                                  
+                                                 BarcodeValue="{Binding QRCode}">
+                        <zxing:ZXingBarcodeImageView.BarcodeOptions>
+                            <zxcm:EncodingOptions Width="300" Height="300" />
+                        </zxing:ZXingBarcodeImageView.BarcodeOptions>
+                    </zxing:ZXingBarcodeImageView>
+
+                </StackLayout>
+                
+                
+
 
                 <!--  Submit button  -->
                 <buttons:SfButton
-                    x:Name="GenerateButton"
+                    x:Name="GenerateButton"                    
                     Margin="0,8,0,24"
                     BorderWidth="0"
                     Command="{Binding GenerateCommand}"
@@ -173,12 +159,16 @@
                     CornerRadius="20"
                     FontFamily="{StaticResource Montserrat-SemiBold}"
                     FontSize="16"
+                    IsVisible="{Binding IsChecked, Source={x:Reference checkBox},Mode=TwoWay}"
                     HeightRequest="40"
                     HorizontalOptions="{OnIdiom Default=EndAndExpand,
                                                 Phone=CenterAndExpand}"
                     Style="{StaticResource SubmitButtonStyle}"
                     Text="Crear QR"
                     WidthRequest="200" />
+
+
+
             </StackLayout>
 
         </ScrollView>

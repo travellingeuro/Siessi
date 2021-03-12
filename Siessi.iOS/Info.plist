@@ -50,7 +50,7 @@
 	<key>NSFaceIDUsageDescription</key>
 	<string>Need your face to provide your &quot;solo si es si&quot; consent</string>
   <key>NSCameraUsageDescription</key>
-  <string>Necesario para tomar una foto de tu perfil</string>
+  <string>Necesario para tomar una foto de tu perfil y escanear el código QR</string>
   <key>NSMicrophoneUsageDescription</key>
   <string>This app needs access to microphone for taking videos.</string>
   <key>NSPhotoLibraryAddUsageDescription</key>

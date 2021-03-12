@@ -104,7 +104,7 @@ namespace Siessi.Services
         public void SavePreviousConsent()
         {
             var previousconsent = barrel.Get<Consent>("consent");
-            var now = DateTime.Now.ToString();
+            var now = DateTimeOffset.Now.ToString();
             barrel.Add<Consent>($"consent_{now}", previousconsent, TimeSpan.FromDays(1260));
         }
         #endregion
