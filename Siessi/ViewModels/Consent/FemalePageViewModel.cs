@@ -48,9 +48,7 @@ namespace Siessi.ViewModels.Consent
 
         #endregion
 
-        #region Methods
-
- 
+        #region Methods 
 
 
         private async Task<Location> MyLocation()
@@ -133,7 +131,7 @@ namespace Siessi.ViewModels.Consent
                 return;
             if (string.IsNullOrWhiteSpace(Profile.Name))
             {
-                await DisplayAlert("Nombre", "Tienes que crear un perfil");
+                await DisplayAlert("Perfil", "Tienes que crear un perfil");
                 return;
             }
             if (Profile.BirthDate > DateTime.Today.AddYears(-18))

@@ -37,7 +37,7 @@
         <ShellContent Title="Perfil" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate profile:ProfilePage}" />
         <Tab Title="Consentimiento" Icon="consent.png">
             <ShellContent Title="Mujer" Icon="consent.png" ContentTemplate="{DataTemplate consent:FemalePage}" />
-            <ShellContent Title="Hombre" Icon="consent.png" ContentTemplate="{DataTemplate local:ItemsPage}" />            
+            <ShellContent Title="Hombre" Icon="consent.png" ContentTemplate="{DataTemplate consent:MalePage}" />            
         </Tab>                
         <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </TabBar>

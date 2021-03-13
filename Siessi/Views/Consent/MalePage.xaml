@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    x:Class="Siessi.Views.Consent.MalePage"
+     xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:control="clr-namespace:Siessi.Controls"
+    xmlns:viewModel="clr-namespace:Siessi.ViewModels.Consent" 
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
+    xmlns:zxcm="clr-namespace:ZXing.Common;assembly=zxing.portable"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    BackgroundColor="{DynamicResource Gray-100}"
+    Title="{Binding Title}"    
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding Context for OverAllFeedback Page  -->
+    <ContentPage.BindingContext>
+        <viewModel:MalePageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid>
+
+            <!--  QR scaner  -->
+            <zxing:ZXingScannerView x:Name="BarcodeScanView" 
+                                    IsVisible="True" 
+                                    HeightRequest="50" 
+                                    IsAnalyzing="{Binding IsAnalizing}"
+                                    IsScanning="{Binding IsScanning}"  
+                                    Result="{Binding Result, Mode=TwoWay}"
+                                    ScanResultCommand="{Binding OnBarcodeScannedCommand}"                                                                       
+                                    BackgroundColor="{DynamicResource Gray-200}">
+ 
+            </zxing:ZXingScannerView>
+            
+            <zxing:ZXingDefaultOverlay x:Name="scanOverlay" 
+                           TopText="Sujeta el teléfono en vertical" 
+                           BottomText="El escaneo es automático" 
+                           ShowFlashButton="false" 
+                           Opacity="0.9"/>
+
+            <Grid VerticalOptions="EndAndExpand">
+                <BoxView BackgroundColor="{DynamicResource Gray-Black}" Opacity="0.7" />
+
+                <Grid
+                    Padding="16"
+                    ColumnSpacing="16"
+                    RowSpacing="8"
+                    VerticalOptions="EndAndExpand">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--  Profile Image  -->
+                    <border:SfBorder
+                        BorderWidth="0"
+                        CornerRadius="24"
+                        HeightRequest="48"
+                        Style="{StaticResource SfBorderStyle}"
+                        WidthRequest="48">
+                        <Image x:Name="ProfileImage" BackgroundColor="{DynamicResource Gray-200}" />
+                    </border:SfBorder>
+
+                    <StackLayout
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        VerticalOptions="Center">
+
+                        <StackLayout Spacing="0" VerticalOptions="Start">
+                            <!--  Customer Name  -->
+                            <Label
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="16"
+                                Style="{StaticResource LabelStyle}"
+                                Text="Jane Deo"
+                                TextColor="{DynamicResource Gray-White}" />
+
+                            <!--  Commented Date  -->
+                            <Label
+                                FontFamily="{StaticResource Montserrat-Regular}"
+                                FontSize="12"
+                                Style="{StaticResource LabelStyle}"
+                                Text="29 Dec, 2018"
+                                TextColor="{DynamicResource Gray-White}" />
+
+                        </StackLayout>
+
+                        <!--  Product Rating  -->
+                        <rating:SfRating
+                            HorizontalOptions="EndAndExpand"
+                            RatingSettings="{StaticResource RatingSettings}"
+                            Style="{StaticResource SfRatingStyle}"
+                            VerticalOptions="Start"
+                            Value="5" />
+
+                    </StackLayout>
+
+                    <!--  Product Review  -->
+                    <Label
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="14"
+                        Style="{StaticResource LabelStyle}"
+                        Text="These boots are stunning and I look stunning in them."
+                        TextColor="{DynamicResource Gray-White}" />
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ProfileCommand}" CommandParameter="{Binding .}" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
