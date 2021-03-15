@@ -1,8 +1,5 @@
-﻿using MvvmHelpers.Commands;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using ZXing;
@@ -11,7 +8,7 @@ namespace Siessi.ViewModels.Consent
 {
     public class MalePageViewModel : BaseViewModel
     {
-        #region fields
+        #region Fields
         bool isBusy;
         bool isProcessing = false;
         bool isAnalizing = true;
@@ -22,14 +19,13 @@ namespace Siessi.ViewModels.Consent
         
         #endregion
 
-        #region contructor
+        #region Contructor
 
         public MalePageViewModel()
         {
             Title = "Escanea el código QR para obtener el solo sí es sí";
 
             Profile = DataService.GetProfile();
-
             
             this.OnBarcodeScannedCommand = new MvvmHelpers.Commands.Command(OnQrScannedMethod);
         }
@@ -42,9 +38,10 @@ namespace Siessi.ViewModels.Consent
 
         #endregion
 
-        #region methods
+        #region Methods
         private void OnQrScannedMethod()
         {
+            
             if (!isProcessing)
             {
                 Device.BeginInvokeOnMainThread(async () =>
@@ -90,21 +87,19 @@ namespace Siessi.ViewModels.Consent
             try
             {
                 Consent = JsonConvert.DeserializeObject<Models.Consent>(text);
-                DataService.SaveConsent(Consent);
-                OnPropertyChanged(nameof(Consent));
-                await DisplayAlert("Solo si es si", $"Has recibido solo si es si de {Consent.Name}");
+
             }
-            catch (Exception)
-            {
-                await DisplayAlert("Alerta", "Sólo QR creado con esta App");
-                
+            catch (Newtonsoft.Json.JsonException Exception)
+            {                
+                await DisplayAlert("Solo se aceptan QR de esta app", Exception.Message);
+                return;
             }
-           
+
+            DataService.SaveConsent(Consent);
+            OnPropertyChanged(nameof(Consent));
+            await DisplayAlert("Solo si es si", $"Has recibido solo si es si de {Consent.Name}");
 
         }
-
-
-
 
         #endregion
 
@@ -138,6 +133,8 @@ namespace Siessi.ViewModels.Consent
             get => consent;
             set => SetProperty(ref consent, value);
         }
+
+        public bool IsMale => Profile.Gender == "Hombre";
 
         #endregion
     }

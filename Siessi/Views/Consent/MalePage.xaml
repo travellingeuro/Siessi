@@ -3,15 +3,8 @@
     x:Class="Siessi.Views.Consent.MalePage"
      xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:control="clr-namespace:Siessi.Controls"
-    xmlns:viewModel="clr-namespace:Siessi.ViewModels.Consent" 
-    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
-    xmlns:zxcm="clr-namespace:ZXing.Common;assembly=zxing.portable"
-    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:viewModel="clr-namespace:Siessi.ViewModels.Consent"
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
     BackgroundColor="{DynamicResource Gray-100}"
     Title="{Binding Title}"    
     NavigationPage.HasNavigationBar="False">
@@ -32,25 +25,46 @@
     <ContentPage.Content>
         <Grid>
 
+            <Label IsVisible="false" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                     Binding="{Binding IsMale}"
+                                     Value="False">
+                        <Setter Property="Text" Value="Solo puedes recibir consentimiento si eres hombre" />
+                        <Setter Property="IsVisible" Value="True" />
+                        <Setter Property="FontSize" Value="Large" />
+                        <Setter Property="Padding" Value="20" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
             <!--  QR scaner  -->
+            
             <zxing:ZXingScannerView x:Name="BarcodeScanView" 
-                                    IsVisible="True" 
+                                    IsVisible="{Binding IsMale}" 
                                     HeightRequest="50" 
                                     IsAnalyzing="{Binding IsAnalizing}"
                                     IsScanning="{Binding IsScanning}"  
                                     Result="{Binding Result, Mode=TwoWay}"
                                     ScanResultCommand="{Binding OnBarcodeScannedCommand}"                                                                       
                                     BackgroundColor="{DynamicResource Gray-200}">
- 
             </zxing:ZXingScannerView>
-            
-            <zxing:ZXingDefaultOverlay x:Name="scanOverlay" 
+
+            <zxing:ZXingDefaultOverlay 
+                           x:Name="scanOverlay"               
                            TopText="Sujeta el teléfono en vertical" 
                            BottomText="El escaneo es automático" 
                            ShowFlashButton="false" 
-                           Opacity="0.9"/>
+                           Opacity="0.9">
+                <zxing:ZXingDefaultOverlay.Triggers>
+                    <DataTrigger TargetType="zxing:ZXingDefaultOverlay" Binding="{Binding Source={x:Reference BarcodeScanView}, Path=IsVisible}" Value="False">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </zxing:ZXingDefaultOverlay.Triggers>
+            </zxing:ZXingDefaultOverlay>
 
-            <Grid VerticalOptions="EndAndExpand">
+
+            <Grid VerticalOptions="EndAndExpand" IsVisible="{Binding IsMale}">
                 <BoxView BackgroundColor="{DynamicResource Gray-Black}" Opacity="0.7" />
 
                 <Grid
@@ -70,14 +84,14 @@
                     </Grid.ColumnDefinitions>
 
                     <!--  Profile Image  -->
-                    <border:SfBorder
+                    <!--<border:SfBorder
                         BorderWidth="0"
                         CornerRadius="24"
                         HeightRequest="48"
                         Style="{StaticResource SfBorderStyle}"
                         WidthRequest="48">
                         <Image x:Name="ProfileImage" BackgroundColor="{DynamicResource Gray-200}" />
-                    </border:SfBorder>
+                    </border:SfBorder>-->
 
                     <StackLayout
                         Grid.Column="1"
@@ -90,7 +104,7 @@
                                 FontFamily="{StaticResource Montserrat-SemiBold}"
                                 FontSize="16"
                                 Style="{StaticResource LabelStyle}"
-                                Text="Jane Deo"
+                                Text="{Binding Consent.Name}"
                                 TextColor="{DynamicResource Gray-White}" />
 
                             <!--  Commented Date  -->
@@ -98,18 +112,18 @@
                                 FontFamily="{StaticResource Montserrat-Regular}"
                                 FontSize="12"
                                 Style="{StaticResource LabelStyle}"
-                                Text="29 Dec, 2018"
+                                Text="{Binding Consent.TimeStamp}"
                                 TextColor="{DynamicResource Gray-White}" />
 
                         </StackLayout>
 
-                        <!--  Product Rating  -->
+                        <!--  Product Rating  --><!--
                         <rating:SfRating
                             HorizontalOptions="EndAndExpand"
                             RatingSettings="{StaticResource RatingSettings}"
                             Style="{StaticResource SfRatingStyle}"
                             VerticalOptions="Start"
-                            Value="5" />
+                            Value="5" />-->
 
                     </StackLayout>
 
@@ -120,7 +134,7 @@
                         FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="14"
                         Style="{StaticResource LabelStyle}"
-                        Text="These boots are stunning and I look stunning in them."
+                        Text="{Binding Consent.Message}"
                         TextColor="{DynamicResource Gray-White}" />
 
                     <Grid.GestureRecognizers>

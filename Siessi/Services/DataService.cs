@@ -36,6 +36,7 @@ namespace Siessi.Services
                 var profile = barrel.Get<Profile>("profile");
                 profile ??= new Profile
                 {
+                    
                      Category= string.Empty,
                      CategoryValue=string.Empty,
                      ImagePath=string.Empty,
@@ -87,6 +88,13 @@ namespace Siessi.Services
             return consent;            
         }
 
+        public async Task<IEnumerable<Models.Consent>> GetConsentsAsync(bool forceRefresh = false)
+        {
+            List<Models.Consent> consents = new List<Consent>();
+
+            return await Task.FromResult(consents);
+        }
+
 
         public void SaveConsent(Consent consent)
         {
@@ -99,6 +107,7 @@ namespace Siessi.Services
                 barrel.Add<Consent>("consent", consent, TimeSpan.FromDays(1260));
             }
         }
+
 
 
         public void SavePreviousConsent()

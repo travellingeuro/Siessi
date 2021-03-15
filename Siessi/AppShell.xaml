@@ -4,6 +4,7 @@
        xmlns:local="clr-namespace:Siessi.Views"
        xmlns:profile="clr-namespace:Siessi.Views.Profile"
        xmlns:consent="clr-namespace:Siessi.Views.Consent"
+      
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        mc:Ignorable="d"
        Title="Siessi"
@@ -39,7 +40,7 @@
             <ShellContent Title="Mujer" Icon="consent.png" ContentTemplate="{DataTemplate consent:FemalePage}" />
             <ShellContent Title="Hombre" Icon="consent.png" ContentTemplate="{DataTemplate consent:MalePage}" />            
         </Tab>                
-        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
+        <ShellContent Title="Historial" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </TabBar>
 
     <!--

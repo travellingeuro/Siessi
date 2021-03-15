@@ -1,14 +1,10 @@
-﻿using siessi.Settings;
-using Siessi.ViewModels;
-using Siessi.Views;
+﻿using Siessi.Views;
 using Siessi.Views.Profile;
-using System;
-using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace Siessi
 {
-    public partial class AppShell : Xamarin.Forms.Shell
+    public partial class AppShell : Shell
     {
         public AppShell()
         {
