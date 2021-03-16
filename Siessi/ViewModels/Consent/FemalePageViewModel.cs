@@ -31,7 +31,7 @@ namespace Siessi.ViewModels.Consent
 
             Consent = DataService.GetConsent();
             Consent.SaveConsentAction = SaveConsent;
-
+            
             Profile = DataService.GetProfile();
 
             this.GenerateCommand = new AsyncCommand(this.OnGenerateMethod);

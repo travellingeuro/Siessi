@@ -6,6 +6,7 @@ using Siessi.Services;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -73,7 +74,7 @@ namespace Siessi.Services
         }
         #endregion
 
-        #region methods_for_Consent
+        #region Methods_for_Consent
 
         public Consent GetConsent()
         {     
@@ -86,6 +87,25 @@ namespace Siessi.Services
                 TimeStamp=DateTimeOffset.Now                   
             };
             return consent;            
+        }
+
+        public List<Consent> GetConsents()
+        {
+            
+            lock (locker)
+            {
+                var consents = new List<Consent>();
+                var actives = barrel.GetKeys(CacheState.Active);
+                var consentkeys = actives.Where((k) => k.Contains("consent"));
+                foreach (var key in consentkeys)
+                {
+                    var consent = barrel.Get<Consent>(key);
+                    consents.Add(consent);
+                }
+                return consents;
+
+            }
+
         }
 
         public void SaveConsent(Consent consent)
@@ -106,7 +126,7 @@ namespace Siessi.Services
         {
             var previousconsent = barrel.Get<Consent>("consent");
             var now = DateTimeOffset.Now.ToString();
-            barrel.Add<Consent>($"consent_{now}", previousconsent, TimeSpan.FromDays(1260));
+            barrel.Add<Consent>($"consent_{now}", previousconsent, TimeSpan.FromDays(2260));
         }
         #endregion
 

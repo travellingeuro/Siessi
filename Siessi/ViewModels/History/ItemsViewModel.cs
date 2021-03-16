@@ -13,6 +13,8 @@ namespace Siessi.ViewModels
         private Item _selectedItem;
         private Models.Consent _selectedConsent;
 
+        public Models.Profile Profile { get; }
+
         public ObservableCollection<Item> Items { get; }
         public ObservableCollection<Models.Consent> Consents { get;  }
 
@@ -27,11 +29,13 @@ namespace Siessi.ViewModels
 
         public ItemsViewModel()
         {
-            Title = "Historial de consentimientos";
+            Profile = DataService.GetProfile();
+            Title = Profile.Gender=="Mujer"? "Consentimientos otorgados": "Consentimientos recibidos";
+
             Items = new ObservableCollection<Item>();
             Consents = new ObservableCollection<Models.Consent>();
 
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            //LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             LoadConsentsCommand = new Command(async () => await ExecuteLoadConsentsCommand());
 
             ItemTapped = new Command<Item>(OnItemSelected);

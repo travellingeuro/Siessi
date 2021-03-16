@@ -1,4 +1,5 @@
-﻿using Siessi.Models;
+﻿using MvvmHelpers;
+using Siessi.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,15 +7,14 @@ using System.Threading.Tasks;
 
 namespace Siessi.Services
 {
-    public class ConsentDataStore : IDataStore<Consent>
+    public class ConsentDataStore : BaseViewModel, IDataStore<Consent>
     {
-        readonly List<Consent> consents;
+        public List<Consent> Consents { get; }
 
         public ConsentDataStore()
         {
-
-            consents = new List<Consent>() 
-            {new Consent{ Name="Arturo", Model="Rover"} };
+            var a = new DataService();
+            Consents = a.GetConsents();
         }
 
         public Task<bool> AddItemAsync(Consent item)
@@ -34,7 +34,7 @@ namespace Siessi.Services
 
         public async Task<IEnumerable<Consent>> GetItemsAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(consents);
+            return await Task.FromResult(Consents);
         }
 
         public Task<bool> UpdateItemAsync(Consent item)
