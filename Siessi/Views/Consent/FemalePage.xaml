@@ -21,9 +21,9 @@
     </ContentPage.Resources>
 
     <!--  Binding Context for OverAllFeedback Page  -->
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <viewModel:FemalePageViewModel />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
 
     <ContentPage.Content>
         <ScrollView>

@@ -24,9 +24,9 @@
     </ContentPage.Resources>
 
     <!--  Binding context for Profile Page  -->
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <viewModel:ProfileViewModel />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
     
     <!--Toolbar Item for Profile Page-->
     <ContentPage.ToolbarItems>

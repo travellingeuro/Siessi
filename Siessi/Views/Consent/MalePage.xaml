@@ -18,9 +18,9 @@
     </ContentPage.Resources>
 
     <!--  Binding Context for OverAllFeedback Page  -->
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <viewModel:MalePageViewModel />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
 
     <ContentPage.Content>
         <Grid>

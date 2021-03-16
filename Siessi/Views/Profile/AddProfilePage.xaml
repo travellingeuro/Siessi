@@ -28,9 +28,9 @@ xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Sy
     </ContentPage.Resources>
 
     <!--  Binding context for Profile Page  -->
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <viewModel:AddProfileViewModel />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
 
     <ContentPage.Content>
         <ScrollView>

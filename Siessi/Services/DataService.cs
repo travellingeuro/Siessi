@@ -88,14 +88,6 @@ namespace Siessi.Services
             return consent;            
         }
 
-        public async Task<IEnumerable<Models.Consent>> GetConsentsAsync(bool forceRefresh = false)
-        {
-            List<Models.Consent> consents = new List<Consent>();
-
-            return await Task.FromResult(consents);
-        }
-
-
         public void SaveConsent(Consent consent)
         {
             lock (locker)
