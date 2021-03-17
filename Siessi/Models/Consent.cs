@@ -107,6 +107,16 @@ namespace Siessi.Models
             set => SetProperty(ref message, value);
         }
 
+        /// <summary>
+        /// Gets or sets the property that has been displays the unique Id
+        /// </summary>
+        /// 
+        string id = string.Empty;
+        public string Id
+        {
+            get => id;
+            set => SetProperty(ref id, value);
+        }
         #endregion
     }
 }

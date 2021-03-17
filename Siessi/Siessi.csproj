@@ -88,6 +88,9 @@
     <EmbeddedResource Update="Views\History\HistoryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\History\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Onboarding\OnBoardingAnimationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

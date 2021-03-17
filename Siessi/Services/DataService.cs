@@ -84,7 +84,8 @@ namespace Siessi.Services
                 Manufacturer=DeviceInfo.Manufacturer,
                 DeviceName=DeviceInfo.Name,
                 Location=new Location(),
-                TimeStamp=DateTimeOffset.Now                   
+                TimeStamp=DateTimeOffset.Now,
+                Id=Guid.NewGuid().ToString()
             };
             return consent;            
         }
