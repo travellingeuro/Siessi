@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Siessi.Views.ItemDetailPage"
+              NavigationPage.HasNavigationBar="False"
+              BackgroundColor="{DynamicResource Gray-White}"
              Title="{Binding Title}">
     
     <ContentPage.Resources>
@@ -13,8 +15,24 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout Spacing="20" Padding="15">
-            <Label Text="Text:" FontSize="Medium" />
+        <StackLayout Spacing="20" Padding="0">
+           <!--Header label for name and birthDate-->
+            <StackLayout Orientation="Horizontal" BackgroundColor="{DynamicResource Gray-300}">
+                <Image Source="user.png"/>
+                <Label
+                    Margin="16,0,0,0"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontSize="14"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    LineHeight="{OnPlatform Default=-1,
+                                            Android=1.25}"
+                    Text="Quién"
+                    TextColor="{DynamicResource Gray-800}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </StackLayout>
+            
             <Label Text="{Binding Name}" FontSize="Small"/>
             <Label Text="Description:" FontSize="Medium" />
             <Label Text="{Binding Message}" FontSize="Small"/>       

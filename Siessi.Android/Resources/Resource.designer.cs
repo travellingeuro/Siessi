@@ -22826,97 +22826,100 @@ namespace Siessi.Droid
 			public const int material_ic_menu_arrow_up_black_24dp = 2131231004;
 			
 			// aapt resource value: 0x7F08011D
-			public const int mtrl_dialog_background = 2131231005;
+			public const int mobile = 2131231005;
 			
 			// aapt resource value: 0x7F08011E
-			public const int mtrl_dropdown_arrow = 2131231006;
+			public const int mtrl_dialog_background = 2131231006;
 			
 			// aapt resource value: 0x7F08011F
-			public const int mtrl_ic_arrow_drop_down = 2131231007;
+			public const int mtrl_dropdown_arrow = 2131231007;
 			
 			// aapt resource value: 0x7F080120
-			public const int mtrl_ic_arrow_drop_up = 2131231008;
+			public const int mtrl_ic_arrow_drop_down = 2131231008;
 			
 			// aapt resource value: 0x7F080121
-			public const int mtrl_ic_cancel = 2131231009;
+			public const int mtrl_ic_arrow_drop_up = 2131231009;
 			
 			// aapt resource value: 0x7F080122
-			public const int mtrl_ic_error = 2131231010;
+			public const int mtrl_ic_cancel = 2131231010;
 			
 			// aapt resource value: 0x7F080123
-			public const int mtrl_popupmenu_background = 2131231011;
+			public const int mtrl_ic_error = 2131231011;
 			
 			// aapt resource value: 0x7F080124
-			public const int mtrl_popupmenu_background_dark = 2131231012;
+			public const int mtrl_popupmenu_background = 2131231012;
 			
 			// aapt resource value: 0x7F080125
-			public const int mtrl_tabs_default_indicator = 2131231013;
+			public const int mtrl_popupmenu_background_dark = 2131231013;
 			
 			// aapt resource value: 0x7F080126
-			public const int navigation_empty_icon = 2131231014;
+			public const int mtrl_tabs_default_indicator = 2131231014;
 			
 			// aapt resource value: 0x7F080127
-			public const int notification_action_background = 2131231015;
+			public const int navigation_empty_icon = 2131231015;
 			
 			// aapt resource value: 0x7F080128
-			public const int notification_bg = 2131231016;
+			public const int notification_action_background = 2131231016;
 			
 			// aapt resource value: 0x7F080129
-			public const int notification_bg_low = 2131231017;
+			public const int notification_bg = 2131231017;
 			
 			// aapt resource value: 0x7F08012A
-			public const int notification_bg_low_normal = 2131231018;
+			public const int notification_bg_low = 2131231018;
 			
 			// aapt resource value: 0x7F08012B
-			public const int notification_bg_low_pressed = 2131231019;
+			public const int notification_bg_low_normal = 2131231019;
 			
 			// aapt resource value: 0x7F08012C
-			public const int notification_bg_normal = 2131231020;
+			public const int notification_bg_low_pressed = 2131231020;
 			
 			// aapt resource value: 0x7F08012D
-			public const int notification_bg_normal_pressed = 2131231021;
+			public const int notification_bg_normal = 2131231021;
 			
 			// aapt resource value: 0x7F08012E
-			public const int notification_icon_background = 2131231022;
+			public const int notification_bg_normal_pressed = 2131231022;
 			
 			// aapt resource value: 0x7F08012F
-			public const int notification_template_icon_bg = 2131231023;
+			public const int notification_icon_background = 2131231023;
 			
 			// aapt resource value: 0x7F080130
-			public const int notification_template_icon_low_bg = 2131231024;
+			public const int notification_template_icon_bg = 2131231024;
 			
 			// aapt resource value: 0x7F080131
-			public const int notification_tile_bg = 2131231025;
+			public const int notification_template_icon_low_bg = 2131231025;
 			
 			// aapt resource value: 0x7F080132
-			public const int notify_panel_notification_icon_bg = 2131231026;
+			public const int notification_tile_bg = 2131231026;
 			
 			// aapt resource value: 0x7F080133
-			public const int ReSchedule = 2131231027;
+			public const int notify_panel_notification_icon_bg = 2131231027;
 			
 			// aapt resource value: 0x7F080134
-			public const int splash_screen = 2131231028;
+			public const int ReSchedule = 2131231028;
 			
 			// aapt resource value: 0x7F080135
-			public const int test_custom_background = 2131231029;
+			public const int splash_screen = 2131231029;
 			
 			// aapt resource value: 0x7F080136
-			public const int TimeZone = 2131231030;
+			public const int test_custom_background = 2131231030;
 			
 			// aapt resource value: 0x7F080137
-			public const int tooltip_frame_dark = 2131231031;
+			public const int TimeZone = 2131231031;
 			
 			// aapt resource value: 0x7F080138
-			public const int tooltip_frame_light = 2131231032;
+			public const int tooltip_frame_dark = 2131231032;
 			
 			// aapt resource value: 0x7F080139
-			public const int user = 2131231033;
+			public const int tooltip_frame_light = 2131231033;
 			
 			// aapt resource value: 0x7F08013A
-			public const int ViewMode = 2131231034;
+			public const int user = 2131231034;
 			
 			// aapt resource value: 0x7F08013B
-			public const int xamarin_logo = 2131231035;
+			public const int ViewMode = 2131231035;
+			
+			// aapt resource value: 0x7F08013C
+			public const int xamarin_logo = 2131231036;
 			
 			static Drawable()
 			{
