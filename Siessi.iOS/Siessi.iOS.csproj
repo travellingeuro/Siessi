@@ -307,4 +307,13 @@
   <ItemGroup>
     <BundleResource Include="Resources\consent%403x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mobile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mobile%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mobile%403x.png" />
+  </ItemGroup>
 </Project>

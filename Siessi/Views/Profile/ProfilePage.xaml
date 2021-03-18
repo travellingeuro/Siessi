@@ -66,7 +66,6 @@
                                BackgroundColor="{DynamicResource Gray-White}">
                             <Image.Source>
                                 <FileImageSource File="{Binding Picture}"/>
-
                             </Image.Source>
                         </Image>
                     </border:SfBorder>

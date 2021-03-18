@@ -74,7 +74,7 @@ namespace Siessi.ViewModels.Profile
                 {
                     Category = "Sexo",
                     CategoryValue = Profile.Gender,
-                    ImagePath =Profile.Gender=="Hombre"? "male.png": "female.png"
+                    ImagePath = Profile.Gender == "Hombre"? "male.png": "female.png"
                 },
                 new Models.Profile()
                 {
