@@ -23,7 +23,7 @@
 	<key>UIAppFonts</key>
 	<array/>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>10.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>Siessi</string>
 	<key>CFBundleIdentifier</key>
@@ -36,8 +36,6 @@
 	<string>Siessi</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcons.appiconset</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Need your face to provide your &quot;solo si es si&quot; consent</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Necesario para tomar una foto de tu perfil y escanear el código QR</string>
 	<key>NSMicrophoneUsageDescription</key>
@@ -46,5 +44,9 @@
 	<string>Necesario para elegir una foto de perfil</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Necesario para elegir fotos y videos</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Incluye tu localizacion para mayor seguridad</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Need your face / finger to provide your &quot;solo si es si&quot; consent</string>
 </dict>
 </plist>
