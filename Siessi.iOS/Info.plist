@@ -21,18 +21,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIAppFonts</key>
-	<array>
-		<string>UIFontIcons.ttf</string>
-		<string>Montserrat-Bold.ttf</string>
-		<string>Montserrat-Medium.ttf</string>
-		<string>Montserrat-Regular.ttf</string>
-		<string>Montserrat-SemiBold.ttf</string>
-	</array>
-    <key>UIAppFonts</key>
-    <array>
-        
-    </array>
-
+	<array/>
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
@@ -46,16 +35,16 @@
 	<key>CFBundleName</key>
 	<string>Siessi</string>
 	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<string>Assets.xcassets/AppIcons.appiconset</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Need your face to provide your &quot;solo si es si&quot; consent</string>
-  <key>NSCameraUsageDescription</key>
-  <string>Necesario para tomar una foto de tu perfil y escanear el código QR</string>
-  <key>NSMicrophoneUsageDescription</key>
-  <string>This app needs access to microphone for taking videos.</string>
-  <key>NSPhotoLibraryAddUsageDescription</key>
-  <string>Necesario para elegir una foto de perfil</string>
-  <key>NSPhotoLibraryUsageDescription</key>
-  <string>Necesario para elegir fotos y videos</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Necesario para tomar una foto de tu perfil y escanear el código QR</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs access to microphone for taking videos.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Necesario para elegir una foto de perfil</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Necesario para elegir fotos y videos</string>
 </dict>
 </plist>
