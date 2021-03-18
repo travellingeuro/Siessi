@@ -19,7 +19,14 @@ namespace Siessi.ViewModels
         private string name;
         private string message;
         private DateTime birthDate;
-        public string Id { get; set; }
+        private string id;
+       
+        public string Id
+        {
+            get => id;
+            
+            set => SetProperty(ref id, value);
+        }
 
         
         public string Model

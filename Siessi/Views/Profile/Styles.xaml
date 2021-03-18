@@ -205,6 +205,7 @@
         <Setter Property="HeightRequest" Value="24"/>
         <Setter Property="LineHeight" Value="{OnPlatform Android=1.5, Default=-1}"/>
     </Style>
+    
 
     <!--Common boxview style-->
     <Style x:Key="BoxViewStyle" TargetType="BoxView">

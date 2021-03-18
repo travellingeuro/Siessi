@@ -4,78 +4,100 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:control="clr-namespace:Siessi.Controls"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-    xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms">
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
 
-    <Color x:Key="Gold">#fcbc0f</Color>
-
+    <Color x:Key="Transparent">Transparent</Color>
     <x:String x:Key="Back">&#xe709;</x:String>
-    <x:String x:Key="Filter">&#xe702;</x:String>
     <x:String x:Key="Search">&#xe705;</x:String>
-    <x:String x:Key="Sort">&#xe70a;</x:String>
-    <x:String x:Key="Home">&#xe706;</x:String>
-    <x:String x:Key="Categories">&#xe70d;</x:String>
-    <x:String x:Key="WishList">&#xe701;</x:String>
-    <x:String x:Key="Cart">&#xe708;</x:String>
+    <x:String x:Key="Share">&#xe704;</x:String>
+    <x:String x:Key="Next">&#xe71a;</x:String>
     <x:String x:Key="Account">&#xe70e;</x:String>
-    <x:String x:Key="Close">&#xe724;</x:String>
+    <x:String x:Key="Bell">&#xe700;</x:String>
+    <x:String x:Key="Mail">&#xe70e;</x:String>
+    <x:String x:Key="Help">&#xe72c;</x:String>
 
-    <!--  Common style for font icons  -->
-    <Style x:Key="CommonIconStyle" TargetType="Label">
+
+    <!--  Common style for entries  -->
+    <Style x:Key="ChatSearchEntryStyle" TargetType="control:BorderlessEntry">
+        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="ReturnType" Value="Done" />
+    </Style>
+
+    <!--  Common style for NavigationBar button  -->
+    <Style x:Key="NavigationBarButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="FontSize" Value="18" />
+        <Setter Property="WidthRequest" Value="38" />
+        <Setter Property="HeightRequest" Value="38" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Fill" />
         <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BorderWidth" Value="0" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
     </Style>
 
-    <!--  Common style for labels  -->
-    <Style x:Key="LabelStyle" TargetType="Label">
-        <Setter Property="LineHeight" Value="{OnPlatform Android=1.25,Default=-1}" />
-        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="HorizontalTextAlignment" Value="Start" />
+    <!--  Common style for icon buttons  -->
+    <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
-        <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="HorizontalOptions" Value="Start" />
-    </Style>
-
-    <!--  Common style for sfBorder  -->
-    <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="BorderWidth" Value="{OnIdiom Default=2, Desktop=0}" />
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-White}" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="40" />
     </Style>
 
-    <!--  Common style for BoxView  -->
-    <Style x:Key="BoxViewStyle" TargetType="BoxView">
-        <Setter Property="HeightRequest" Value="1" />
-        <Setter Property="Color" Value="{DynamicResource Gray-200}" />
+    <!--  Common style for icon label  -->
+    <Style x:Key="IconLabelStyle" TargetType="Label">
+        <Setter Property="Margin" Value="16,8" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
     </Style>
 
-    <rating:SfRatingSettings
-        x:Key="RatingSettings"
-        RatedFill="{StaticResource Gold}"
-        RatedStroke="{StaticResource Gold}"
-        UnRatedStroke="{DynamicResource Gray-600}"
-        UnRatedStrokeWidth="1" />
+    <!--  Common style for SfborderStyle  -->
+    <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BorderColor" Value="Transparent" />
+        <Setter Property="CornerRadius" Value="25" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
 
-    <!--  Common style for SfRating  -->
-    <Style x:Key="SfRatingStyle" TargetType="rating:SfRating">
-        <Setter Property="ItemCount" Value="5" />
-        <Setter Property="ReadOnly" Value="True" />
-        <Setter Property="ItemSize" Value="13" />
-        <Setter Property="ItemSpacing" Value="1" />
+    <!--  Common style for  Label  -->
+    <Style x:Key="LabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="Margin" Value="16, 0" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+        <Setter Property="LineHeight" Value="{OnPlatform Default=-1, Android=1.25}" />
+        <Setter Property="MaxLines" Value="2" />
     </Style>
 
-    <!--  Common style for SfButton  -->
+    <!--  Common style for separator BoxView  -->
+    <Style x:Key="SeparatorStyle" TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
+    </Style>
+
+    <!--  Common style for SfButtons  -->
     <Style x:Key="SfButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
@@ -83,8 +105,18 @@
         <Setter Property="FontSize" Value="16" />
     </Style>
 
-    <!--  Common style for Magenta buttons  -->
-    <Style x:Key="SubmitButtonStyle" TargetType="buttons:SfButton">
+    <!--  Common style for rounded buttons  -->
+    <Style
+        x:Key="RoundButtonStyle"
+        BasedOn="{StaticResource SfButtonStyle}"
+        TargetType="buttons:SfButton">
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-300}" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="CornerRadius" Value="22" />
+        <Setter Property="WidthRequest" Value="44" />
+        <Setter Property="HeightRequest" Value="44" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="BackgroundGradient">
             <Setter.Value>
                 <graphics:SfLinearGradientBrush>
@@ -95,72 +127,6 @@
                 </graphics:SfLinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
     </Style>
-
-    <DataTemplate x:Key="HeaderTemplate">
-
-        <StackLayout
-            Padding="16,8,8,0"
-            HorizontalOptions="End"
-            Orientation="Horizontal"
-            Spacing="8">
-
-            <!--  Filter label and icon  -->
-
-            <buttons:SfButton
-                BorderWidth="0"
-                Command="{Binding FilterCommand}"
-                CornerRadius="4"
-                HeightRequest="32"
-                Style="{StaticResource SfButtonStyle}">
-                <buttons:SfButton.Content>
-                    <StackLayout
-                        Padding="8,5,8,6"
-                        Orientation="Horizontal"
-                        Spacing="8">
-                        <Label
-                            HorizontalOptions="End"
-                            Style="{StaticResource CommonIconStyle}"
-                            Text="{StaticResource Filter}" />
-
-                        <Label
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
-                            HorizontalOptions="End"
-                            Style="{StaticResource LabelStyle}"
-                            Text="Filter" />
-                    </StackLayout>
-                </buttons:SfButton.Content>
-            </buttons:SfButton>
-
-            <!--  Sort label and icon  -->
-            <buttons:SfButton
-                BorderWidth="0"
-                Command="{Binding SortCommand}"
-                CornerRadius="4"
-                HeightRequest="32"
-                Style="{StaticResource SfButtonStyle}">
-                <buttons:SfButton.Content>
-                    <StackLayout
-                        Padding="8,5,8,6"
-                        Orientation="Horizontal"
-                        Spacing="8">
-
-                        <Label
-                            HorizontalOptions="End"
-                            Style="{StaticResource CommonIconStyle}"
-                            Text="{StaticResource Sort}" />
-
-                        <Label
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
-                            HorizontalOptions="End"
-                            Style="{StaticResource LabelStyle}"
-                            Text="Sorting" />
-                    </StackLayout>
-                </buttons:SfButton.Content>
-            </buttons:SfButton>
-
-        </StackLayout>
-    </DataTemplate>
 
 </ResourceDictionary>

@@ -15,29 +15,93 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout Spacing="20" Padding="0">
-           <!--Header label for name and birthDate-->
-            <StackLayout Orientation="Horizontal" BackgroundColor="{DynamicResource Gray-300}">
-                <Image Source="user.png"/>
-                <Label
-                    Margin="16,0,0,0"
-                    FontFamily="{StaticResource Montserrat-SemiBold}"
-                    FontSize="14"
-                    HeightRequest="50"
-                    HorizontalOptions="FillAndExpand"
-                    LineHeight="{OnPlatform Default=-1,
-                                            Android=1.25}"
-                    Text="Quién"
-                    TextColor="{DynamicResource Gray-800}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
-            </StackLayout>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="0">
             
-            <Label Text="{Binding Name}" FontSize="Small"/>
-            <Label Text="Description:" FontSize="Medium" />
-            <Label Text="{Binding Message}" FontSize="Small"/>       
-        </StackLayout>
-    
+               <!--Header label for name and birthDate-->
+                <StackLayout Orientation="Horizontal" BackgroundColor="{DynamicResource Gray-300}">
+                    <Image Source="user.png"/>
+                    <Label
+                        Margin="16,0,0,0"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="14"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
+                        LineHeight="{OnPlatform Default=-1,
+                                                Android=1.25}"
+                        Text="Quién"
+                        TextColor="{DynamicResource Gray-800}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
+                <Label
+                    Style="{StaticResource LabelStyle}"
+                    Text="{Binding Name}" />
+                <Label
+                    Style="{StaticResource LabelStyle}"
+                    Text="{Binding BirthDate, StringFormat='F. Nac.: {0:dd MM yyyy}'}"/>
+            
+                <!--Header label for Device Info-->
+                <StackLayout Orientation="Horizontal" BackgroundColor="{DynamicResource Gray-300}">
+                    <Image Source="mobile.png"/>
+                    <Label
+                        Margin="16,0,0,0"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="14"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
+                        LineHeight="{OnPlatform Default=-1,
+                                                Android=1.25}"
+                        Text="Dispositivo"
+                        TextColor="{DynamicResource Gray-800}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
+                <Label
+                    Style="{StaticResource LabelStyle}"
+                    Text="{Binding Manufacturer, StringFormat='Fabricante: {0}'}" />
+                <Label
+                    Style="{StaticResource LabelStyle}"
+                    Text="{Binding Model, StringFormat='Modelo: {0}'}" />
+                <Label
+                    Style="{StaticResource LabelStyle}"
+                    Text="{Binding DeviceName, StringFormat='Nombre del dispositivo: {0}'}" />
+
+                <!--Header label for Consent Info-->
+                <StackLayout Orientation="Horizontal" BackgroundColor="{DynamicResource Gray-300}">
+                    <Image Source="icon_about.png"/>
+                    <Label
+                        Margin="16,0,0,0"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="14"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
+                        LineHeight="{OnPlatform Default=-1,
+                                                Android=1.25}"
+                        Text="Consentimiento (si, es si)"
+                        TextColor="{DynamicResource Gray-800}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
+                <Label
+                    Style="{StaticResource LabelStyle}"
+                    LineBreakMode="HeadTruncation"
+                    Text="{Binding Id, StringFormat='Id:    {0}'}" />
+                <Label
+                    Style="{StaticResource LabelStyle}"
+                    Text="{Binding TimeStamp, StringFormat='Otorgado el:   {0:f}'}" />
+                <Label
+                    Style="{StaticResource LabelStyle}"
+                    Text="{Binding Message, StringFormat='Mensaje:   {0}'}" />
+                <Label
+                    Style="{StaticResource LabelStyle}"
+                    Text="{Binding Location.Longitude, StringFormat='Longitud: {0:N3}'}" />
+                <Label
+                    Style="{StaticResource LabelStyle}"
+                    Text="{Binding Location.Latitude, StringFormat='Latitud: {0:N3}'}" />     
+            </StackLayout>
+        </ScrollView>
+
     </ContentPage.Content>
     
 </ContentPage>
