@@ -4,6 +4,7 @@
        xmlns:local="clr-namespace:Siessi.Views"
        xmlns:profile="clr-namespace:Siessi.Views.Profile"
        xmlns:consent="clr-namespace:Siessi.Views.Consent"
+       xmlns:about="clr-namespace:Siessi.Views.About"
       
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        mc:Ignorable="d"
@@ -35,12 +36,13 @@
     </Shell.Resources>
 
     <TabBar x:Name="MainTabBar">
-        <ShellContent Title="Perfil" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate profile:ProfilePage}" />
+        <ShellContent Title="Perfil" Icon="user.png" Route="AboutPage" ContentTemplate="{DataTemplate profile:ProfilePage}" />
         <Tab Title="Consentimiento" Icon="consent.png">
             <ShellContent Title="Mujer" Icon="consent.png" ContentTemplate="{DataTemplate consent:FemalePage}" />
             <ShellContent Title="Hombre" Icon="consent.png" ContentTemplate="{DataTemplate consent:MalePage}" />            
         </Tab>                
         <ShellContent Title="Historial" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
+        <ShellContent Title="Info" Icon="icon_about.png" ContentTemplate="{DataTemplate about:AboutPage}" />
     </TabBar>
 
     <!--

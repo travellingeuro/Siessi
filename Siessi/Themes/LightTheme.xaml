@@ -12,6 +12,7 @@
     <Color x:Key="PrimaryLight">#ffe8f4</Color>
     <Color x:Key="SecondaryGradient">#946d98</Color>
     <Color x:Key="Secondary">#346c2f</Color>
+    <Color x:Key="Accent">#346c2f</Color>
     <Color x:Key="Green">#7ed321</Color>
     <Color x:Key="Red">#ff4a4a</Color>
     <Color x:Key="Orange">#ff844a</Color>
