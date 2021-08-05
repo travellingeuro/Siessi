@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using System.Drawing;
 using SkiaSharp;
 
 namespace Siessi.ViewModels.Profile

@@ -40,12 +40,14 @@ namespace Siessi.ViewModels
             await Shell.Current.GoToAsync(page);
 
             navigating = false;
+            
 
         }
 
         //Implements a class to dsiplay Alerts
         public Task DisplayAlert(string title, string message) =>
             Application.Current.MainPage.DisplayAlert(title, message, "OK");
+        
 
         //Implements a class to display alerts
         public Task<bool> DisplayAlert(string title, string message, string accept, string cancel) =>

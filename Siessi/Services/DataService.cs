@@ -121,8 +121,6 @@ namespace Siessi.Services
             }
         }
 
-
-
         public void SavePreviousConsent()
         {
             var previousconsent = barrel.Get<Consent>("consent");

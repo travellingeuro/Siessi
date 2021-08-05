@@ -17,7 +17,7 @@ namespace Siessi.Views.Consent
         public FemalePage()
         {
             InitializeComponent();
-            BindingContext = vm = new FemalePageViewModel();            
+            BindingContext = vm = new FemalePageViewModel();
         }
 
         protected override bool OnBackButtonPressed()
