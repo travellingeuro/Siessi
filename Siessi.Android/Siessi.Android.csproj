@@ -71,34 +71,34 @@
       <Version>2.80.3</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Buttons">
-      <Version>19.2.0.48</Version>
+      <Version>19.2.0.62</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Cards">
-      <Version>19.2.0.48</Version>
+      <Version>19.2.0.62</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Core">
-      <Version>19.2.0.48</Version>
+      <Version>19.2.0.62</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView">
-      <Version>19.2.0.48</Version>
+      <Version>19.2.0.62</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
-      <Version>19.2.0.48</Version>
+      <Version>19.2.0.62</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox">
-      <Version>19.2.0.48</Version>
+      <Version>19.2.0.62</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
-      <Version>19.2.0.48</Version>
+      <Version>19.2.0.62</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPicker">
-      <Version>19.2.0.48</Version>
+      <Version>19.2.0.62</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRating">
-      <Version>19.2.0.48</Version>
+      <Version>19.2.0.62</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRotator">
-      <Version>19.2.0.48</Version>
+      <Version>19.2.0.62</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Migration">
       <Version>1.0.8</Version>
