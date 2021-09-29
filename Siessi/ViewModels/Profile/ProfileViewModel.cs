@@ -1,11 +1,9 @@
 ﻿using MvvmHelpers.Commands;
 using siessi.Settings;
-using Siessi.Models;
 using Siessi.Views.Profile;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace Siessi.ViewModels.Profile
@@ -27,7 +25,7 @@ namespace Siessi.ViewModels.Profile
 
         public string Picture { get; set; }
 
-        
+
         #endregion
 
         #region Constructor
@@ -68,7 +66,7 @@ namespace Siessi.ViewModels.Profile
 
         private ObservableCollection<Models.Profile> PopulateCardItems()
         {
-           var carditems= new ObservableCollection<Models.Profile>()
+            var carditems = new ObservableCollection<Models.Profile>()
             {
                 new Models.Profile()
                 {
@@ -101,7 +99,7 @@ namespace Siessi.ViewModels.Profile
         /// </summary>       
         private async Task OnAddProfile()
         {
-            await GoToAsync(nameof(AddProfilePage));          
+            await GoToAsync(nameof(AddProfilePage));
         }
 
         private async Task OnFirstRun()
@@ -115,7 +113,7 @@ namespace Siessi.ViewModels.Profile
             else if (AppSettings.UpdateProfile)
             {
                 AppSettings.UpdateProfile = false;
-                Profile = DataService.GetProfile();               
+                Profile = DataService.GetProfile();
                 Profile.SaveProfileAction = SaveProfile;
                 CardItems = PopulateCardItems();
                 Picture = AppSettings.UserImage;
@@ -141,7 +139,7 @@ namespace Siessi.ViewModels.Profile
             set { SetProperty(ref isBusy, value); }
         }
 
-       
+
 
         #endregion
     }

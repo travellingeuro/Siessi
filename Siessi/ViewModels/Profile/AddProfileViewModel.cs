@@ -4,13 +4,13 @@ using Plugin.Fingerprint.Abstractions;
 using siessi.Settings;
 using Siessi.Views;
 using Siessi.Views.Profile;
+using SkiaSharp;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using SkiaSharp;
 
 namespace Siessi.ViewModels.Profile
 {
@@ -20,22 +20,22 @@ namespace Siessi.ViewModels.Profile
     [Preserve(AllMembers = true)]
     class AddProfileViewModel : BaseViewModel
     {
-#region fields
+        #region fields
         public Models.Profile Profile { get; }
         bool showPasswordEntry;
         bool showChangePassword;
         bool showPictureViewer;
 
-#endregion
+        #endregion
 
-#region Constructor
+        #region Constructor
 
         /// <summary>
         /// Initializes a new instance for the <see cref="AddProfileViewModel" /> class.
         /// </summary>
         public AddProfileViewModel()
         {
-            Title = "Modificar Perfil";           
+            Title = "Modificar Perfil";
 
             Profile = DataService.GetProfile();
             Profile.SaveProfileAction = SaveProfile;
@@ -46,11 +46,11 @@ namespace Siessi.ViewModels.Profile
             this.PictureTakenCommand = new AsyncCommand<object>(OnImageTakenMethod);
         }
 
-        
 
-#endregion
 
-#region Commands
+        #endregion
+
+        #region Commands
         /// <summary>
         /// Gets the command that is executed when the Modificar button is clicked.
         /// </summary>
@@ -74,24 +74,24 @@ namespace Siessi.ViewModels.Profile
         /// </summary>
         /// 
         public AsyncCommand<object> PictureTakenCommand { get; }
-        
 
 
-#endregion
 
-#region Methods
+        #endregion
+
+        #region Methods
 
         private void SaveProfile()
         {
             DataService.SaveProfile(Profile);
             siessi.Settings.AppSettings.HasProfile = true;
-            siessi.Settings.AppSettings.UpdateProfile= true;
+            siessi.Settings.AppSettings.UpdateProfile = true;
         }
 
         //this method is executed to change the profile picture
         private async Task OnChangePictureMethod()
         {
-            var option = await DisplayOptions("Cambia tu perfil","Hacer una foto", "Elegir una foto");
+            var option = await DisplayOptions("Cambia tu perfil", "Hacer una foto", "Elegir una foto");
             switch (option)
             {
                 case "Hacer una foto":
@@ -131,7 +131,7 @@ namespace Siessi.ViewModels.Profile
                 IsBusy = false;
                 siessi.Settings.AppSettings.UpdateProfile = true;
                 await GoToAsync($"//{nameof(AboutPage)}");
-            }            
+            }
 
         }
 
@@ -147,38 +147,38 @@ namespace Siessi.ViewModels.Profile
             IsBusy = true;
             var args = (Xamarin.CommunityToolkit.UI.Views.MediaCapturedEventArgs)arg;
             var rot = args.Rotation;
-            var savedPhotoPath= await SavePhotoASync(args.ImageData,rot);
+            var savedPhotoPath = await SavePhotoASync(args.ImageData, rot);
             AppSettings.UserImage = savedPhotoPath;
             Profile.UserImage = savedPhotoPath;
-            ShowPictureViewer = false;            
+            ShowPictureViewer = false;
             OnPropertyChanged(nameof(UserImage));
             IsBusy = false;
-            
+
         }
 
         //Awaited method to save the image and return its path
         private async Task<string> SavePhotoASync(byte[] imageData, double rot)
         {
-            
+
             var storePath = FileSystem.AppDataDirectory;
             var savedPhotoPath = Path.Combine(storePath, "profile.png");
             //Rotates the image
             SKBitmap original = SKBitmap.Decode(imageData);
 
-            SKBitmap rotated = await RotateMethod(original, rot); 
-            
-            var dataToEncode = rotated.Encode(SKEncodedImageFormat.Png,100);
-            var dataencoded = dataToEncode.ToArray();            
+            SKBitmap rotated = await RotateMethod(original, rot);
+
+            var dataToEncode = rotated.Encode(SKEncodedImageFormat.Png, 100);
+            var dataencoded = dataToEncode.ToArray();
 
             //Save the Image
             using (var fs = new FileStream(savedPhotoPath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
             {
                 await fs.WriteAsync(dataencoded, 0, dataencoded.Length);
             }
-            
-            return savedPhotoPath;  
-        }       
-        
+
+            return savedPhotoPath;
+        }
+
         //Rotate the picture
 
         private async Task<SKBitmap> RotateMethod(SKBitmap original, double rot)
@@ -201,8 +201,8 @@ namespace Siessi.ViewModels.Profile
                 surface.Translate(-originalWidth / 2, -originalHeight / 2);
                 surface.DrawBitmap(original, new SKPoint());
             }
-            
-           return rotated;
+
+            return rotated;
         }
 
 
@@ -230,11 +230,11 @@ namespace Siessi.ViewModels.Profile
             {
                 await DisplayAlert("Contraseña", "Pero, ¿no has leído que la contraseña es de al menos 4 caracteres, imbécil?");
                 return;
-            }            
+            }
 
             try
             {
-                IsBusy = true;                
+                IsBusy = true;
                 DataService.SaveProfile(Profile);
                 OnPropertyChanged(nameof(Profile));
             }
@@ -257,11 +257,11 @@ namespace Siessi.ViewModels.Profile
             bool isFingerprintAvailable = await CrossFingerprint.Current.IsAvailableAsync(false);
             if (isFingerprintAvailable)
             {
-                var option=await DisplayOptions("Identifícate", "Contraseña", "Huella");
+                var option = await DisplayOptions("Identifícate", "Contraseña", "Huella");
                 switch (option)
                 {
                     case "Contraseña":
-                         await AuthWithPassword();
+                        await AuthWithPassword();
                         break;
                     case "Huella":
                         await AuthWithFingerprint();
@@ -277,7 +277,7 @@ namespace Siessi.ViewModels.Profile
             }
 
         }
-        
+
         //Method execute a confirmation of the actual password before allow to reset it
         private async Task AuthWithPassword()
         {
@@ -287,8 +287,8 @@ namespace Siessi.ViewModels.Profile
 
             if (string.IsNullOrWhiteSpace(result))
                 return;
-                
-            if(result != AppSettings.UserPassword)
+
+            if (result != AppSettings.UserPassword)
             {
                 await DisplayAlert("Contraseña", "La contraseña es errónea");
                 return;
@@ -298,9 +298,9 @@ namespace Siessi.ViewModels.Profile
         //Method execute fingerprint checking before allow to reset the password
         private async Task AuthWithFingerprint()
         {
-            AuthenticationRequestConfiguration conf =new AuthenticationRequestConfiguration("Identifícate",
+            AuthenticationRequestConfiguration conf = new AuthenticationRequestConfiguration("Identifícate",
                                                                                              "Para acceder al cambio de contraseña");
-            
+
             var authResult = await CrossFingerprint.Current.AuthenticateAsync(conf);
             if (authResult.Authenticated)
             {
@@ -314,9 +314,9 @@ namespace Siessi.ViewModels.Profile
 
         }
 
-#endregion
+        #endregion
 
-#region Properties
+        #region Properties
         public string SyncCreateText => siessi.Settings.AppSettings.HasProfile ? "Actualizar" : "Crear";
         public ImageSource UserImage => ImageSource.FromFile(Profile.UserImage);
 
@@ -337,7 +337,7 @@ namespace Siessi.ViewModels.Profile
             }
             set => SetProperty(ref showPasswordEntry, value);
         }
-        
+
         public bool ShowChangePassword
         {
             get => showChangePassword;
@@ -350,6 +350,6 @@ namespace Siessi.ViewModels.Profile
             set => SetProperty(ref showPictureViewer, value);
         }
 
-#endregion
+        #endregion
     }
 }

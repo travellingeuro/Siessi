@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 
 namespace Siessi.ViewModels.About
 {
     [Preserve(AllMembers = true)]
-    public class AboutViewModel:BaseViewModel
+    public class AboutViewModel : BaseViewModel
     {
         bool isBusy = false;
 
@@ -15,7 +12,7 @@ namespace Siessi.ViewModels.About
             Title = "Sobre esta _app";
         }
 
-        
+
         public bool IsBusy
         {
             get { return isBusy; }

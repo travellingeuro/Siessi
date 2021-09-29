@@ -18,7 +18,7 @@ namespace Siessi.Views.Profile
         {
             InitializeComponent();
             BindingContext = vm = new ResetPasswordViewModel();
-            
+
         }
 
         protected override bool OnBackButtonPressed()

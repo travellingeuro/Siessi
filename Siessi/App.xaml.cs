@@ -1,10 +1,7 @@
 using siessi.Settings;
 using Siessi.Services;
-using Siessi.Views;
 using Siessi.Views.Onboarding;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Siessi
 {
@@ -25,7 +22,7 @@ namespace Siessi
             {
                 MainPage = new NavigationPage(new OnBoardingAnimationPage());
             }
-            
+
         }
 
         protected override void OnStart()

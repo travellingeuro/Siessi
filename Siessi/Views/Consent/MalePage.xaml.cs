@@ -1,9 +1,4 @@
 ﻿using Siessi.ViewModels.Consent;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -21,7 +16,7 @@ namespace Siessi.Views.Consent
         {
             InitializeComponent();
             BindingContext = vm = new MalePageViewModel();
-         }
+        }
 
         protected override bool OnBackButtonPressed()
         {
@@ -35,8 +30,8 @@ namespace Siessi.Views.Consent
         {
             BarcodeScanView.IsScanning = true;
 
-            base.OnAppearing();            
+            base.OnAppearing();
         }
- 
+
     }
 }

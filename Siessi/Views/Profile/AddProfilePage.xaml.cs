@@ -1,9 +1,8 @@
-﻿using siessi.Settings;
-using Siessi.ViewModels.Profile;
+﻿using Siessi.ViewModels.Profile;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using Xamarin.CommunityToolkit.UI.Views;
 
 namespace Siessi.Views.Profile
 {
@@ -20,7 +19,7 @@ namespace Siessi.Views.Profile
         {
             InitializeComponent();
             BindingContext = vm = new AddProfileViewModel();
-                        
+
         }
 
         protected override bool OnBackButtonPressed()
@@ -33,12 +32,12 @@ namespace Siessi.Views.Profile
 
         protected override void OnAppearing()
         {
-            base.OnAppearing();  
+            base.OnAppearing();
         }
 
         private void cameraElection_StateChanged(object sender, Syncfusion.XForms.Buttons.SwitchStateChangedEventArgs e)
         {
-            this.cameraView.CameraOptions = (bool)e.NewValue ? CameraOptions.Back : CameraOptions.Front;           
+            this.cameraView.CameraOptions = (bool)e.NewValue ? CameraOptions.Back : CameraOptions.Front;
         }
     }
 }

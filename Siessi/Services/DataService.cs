@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -37,15 +36,15 @@ namespace Siessi.Services
                 var profile = barrel.Get<Profile>("profile");
                 profile ??= new Profile
                 {
-                    
-                     Category= string.Empty,
-                     CategoryValue=string.Empty,
-                     ImagePath=string.Empty,
-                     Name= string.Empty,
-                     BirthDate=DateTime.Today,
-                     Password=AppSettings.UserPassword,
-                     Gender="Mujer",
-                     UserImage = AppSettings.UserImage
+
+                    Category = string.Empty,
+                    CategoryValue = string.Empty,
+                    ImagePath = string.Empty,
+                    Name = string.Empty,
+                    BirthDate = DateTime.Today,
+                    Password = AppSettings.UserPassword,
+                    Gender = "Mujer",
+                    UserImage = AppSettings.UserImage
                 };
                 return profile;
             }
@@ -55,13 +54,13 @@ namespace Siessi.Services
         {
             lock (locker)
             {
-               if(barrel.Exists("profile"))
+                if (barrel.Exists("profile"))
                 {
                     SavePreviousProfile();
                 }
-               barrel.Add<Profile>("profile", profile, TimeSpan.FromDays(1260));
-               AppSettings.UserPassword = profile.Password;
-               AppSettings.HasProfile = true;              
+                barrel.Add<Profile>("profile", profile, TimeSpan.FromDays(1260));
+                AppSettings.UserPassword = profile.Password;
+                AppSettings.HasProfile = true;
             }
         }
 
@@ -77,22 +76,22 @@ namespace Siessi.Services
         #region Methods_for_Consent
 
         public Consent GetConsent()
-        {     
+        {
             var consent = new Consent
             {
-                Model= DeviceInfo.Model,
-                Manufacturer=DeviceInfo.Manufacturer,
-                DeviceName=DeviceInfo.Name,
-                Location=new Location(),
-                TimeStamp=DateTimeOffset.Now,
-                Id=Guid.NewGuid().ToString()
+                Model = DeviceInfo.Model,
+                Manufacturer = DeviceInfo.Manufacturer,
+                DeviceName = DeviceInfo.Name,
+                Location = new Location(),
+                TimeStamp = DateTimeOffset.Now,
+                Id = Guid.NewGuid().ToString()
             };
-            return consent;            
+            return consent;
         }
 
         public List<Consent> GetConsents()
         {
-            
+
             lock (locker)
             {
                 var consents = new List<Consent>();
@@ -143,16 +142,16 @@ namespace Siessi.Services
                     location = await Geolocation.GetLocationAsync(new GeolocationRequest
                     {
                         DesiredAccuracy = GeolocationAccuracy.High,
-                         Timeout=TimeSpan.FromMilliseconds(5000)
+                        Timeout = TimeSpan.FromMilliseconds(5000)
                     });
                 }
                 if (location == null)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Location", "Unable to find location, use default","OK");
+                    await Application.Current.MainPage.DisplayAlert("Location", "Unable to find location, use default", "OK");
                     location = new Location(0, 0);
                     return location;
                 }
-                return location;                    
+                return location;
             }
             catch (FeatureNotSupportedException fnsEx)
             {

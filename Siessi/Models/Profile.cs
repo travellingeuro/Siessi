@@ -2,8 +2,6 @@
 using Newtonsoft.Json;
 using siessi.Settings;
 using System;
-using System.ComponentModel;
-using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace Siessi.Models
@@ -24,7 +22,7 @@ namespace Siessi.Models
         /// </summary>
         /// 
         public string category = string.Empty;
-        public string Category 
+        public string Category
         {
             get => category;
             set => SetProperty(ref category, value, onChanged: SaveProfileAction);
@@ -35,7 +33,7 @@ namespace Siessi.Models
         /// </summary>
         /// 
         public string categoryValue = string.Empty;
-        public string CategoryValue 
+        public string CategoryValue
         {
             get => categoryValue;
             set => SetProperty(ref categoryValue, value, onChanged: SaveProfileAction);
@@ -47,9 +45,9 @@ namespace Siessi.Models
         /// 
         public string imagePath = string.Empty;
         public string ImagePath
-        { 
+        {
             get => imagePath;
-            set=> SetProperty(ref imagePath, value, onChanged:SaveProfileAction);
+            set => SetProperty(ref imagePath, value, onChanged: SaveProfileAction);
         }
 
         //Properties to use in production

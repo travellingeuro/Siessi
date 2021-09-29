@@ -1,8 +1,6 @@
 ﻿using MvvmHelpers;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Essentials;
 using Xamarin.Forms.Internals;
 
@@ -24,8 +22,8 @@ namespace Siessi.Models
         /// </summary>
         /// 
         string model = string.Empty;
-        public string Model 
-        { 
+        public string Model
+        {
             get => model;
             set => SetProperty(ref model, value);
         }
@@ -56,7 +54,7 @@ namespace Siessi.Models
         /// Gets or sets the property that has been displays the Location.
         /// </summary>
         /// 
-        Location location = new Location(0,0);
+        Location location = new Location(0, 0);
         public Location Location
         {
             get => location;
@@ -92,7 +90,7 @@ namespace Siessi.Models
         DateTime birthDate = DateTime.Now;
         public DateTime BirthDate
         {
-            get=> birthDate;
+            get => birthDate;
             set => SetProperty(ref birthDate, value);
         }
 

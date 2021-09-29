@@ -1,24 +1,20 @@
-using Syncfusion.SfRating.XForms.iOS;
-using Syncfusion.SfBusyIndicator.XForms.iOS;
-using Syncfusion.XForms.iOS.ComboBox;
-using Syncfusion.XForms.Pickers.iOS;
-using Syncfusion.XForms.iOS.TextInputLayout;
-using Syncfusion.XForms.iOS.BadgeView;
-using Syncfusion.XForms.iOS.Cards;
-using Syncfusion.XForms.iOS.Border;
-using Syncfusion.ListView.XForms.iOS;
-using Syncfusion.SfRotator.XForms.iOS;
-using Syncfusion.XForms.iOS.Core;
-using Syncfusion.XForms.iOS.Buttons;
-using Syncfusion.XForms.iOS.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 using Foundation;
-using UIKit;
 using Google.MobileAds;
 using siessi.Settings;
+using Syncfusion.ListView.XForms.iOS;
+using Syncfusion.SfBusyIndicator.XForms.iOS;
+using Syncfusion.SfRating.XForms.iOS;
+using Syncfusion.SfRotator.XForms.iOS;
+using Syncfusion.XForms.iOS.BadgeView;
+using Syncfusion.XForms.iOS.Border;
+using Syncfusion.XForms.iOS.Buttons;
+using Syncfusion.XForms.iOS.Cards;
+using Syncfusion.XForms.iOS.ComboBox;
+using Syncfusion.XForms.iOS.Core;
+using Syncfusion.XForms.iOS.Graphics;
+using Syncfusion.XForms.iOS.TextInputLayout;
+using Syncfusion.XForms.Pickers.iOS;
+using UIKit;
 
 namespace Siessi.iOS
 {
@@ -64,7 +60,7 @@ namespace Siessi.iOS
 
         private void CompletionHandler(InitializationStatus status)
         {
-            
+
         }
     }
 }

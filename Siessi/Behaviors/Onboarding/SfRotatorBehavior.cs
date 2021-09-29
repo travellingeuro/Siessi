@@ -42,13 +42,13 @@ namespace Siessi.Behaviors.Onboarding
                 {
                     viewModel.NextButtonText = "ACEPTAR";
                     viewModel.IsSkipButtonChecked = false;
-                    viewModel.IsSkipButtonVisible = true;                    
+                    viewModel.IsSkipButtonVisible = true;
                 }
                 else
                 {
                     viewModel.NextButtonText = "SIGUIENTE";
                     viewModel.IsSkipButtonChecked = true;
-                    viewModel.IsSkipButtonVisible = false;                    
+                    viewModel.IsSkipButtonVisible = false;
                 }
 
                 if (Device.RuntimePlatform != Device.UWP)

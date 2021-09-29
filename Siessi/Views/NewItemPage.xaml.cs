@@ -1,10 +1,6 @@
 ﻿using Siessi.Models;
 using Siessi.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Siessi.Views
 {

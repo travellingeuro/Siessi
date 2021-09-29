@@ -1,12 +1,12 @@
-﻿using Siessi.Views;
-using Siessi.Views.Profile;
-using Xamarin.Forms;
-using MarcTron.Plugin;
-using Xamarin.Essentials;
-using siessi.Settings;
+﻿using MarcTron.Plugin;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using siessi.Settings;
+using Siessi.Views;
+using Siessi.Views.Profile;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Siessi
 {

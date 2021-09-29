@@ -1,5 +1,4 @@
 ﻿using Siessi.ViewModels;
-using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace Siessi.Views

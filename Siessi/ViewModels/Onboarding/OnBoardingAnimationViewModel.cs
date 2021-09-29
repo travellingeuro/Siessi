@@ -4,9 +4,7 @@ using Siessi.Views;
 using Siessi.Views.Onboarding;
 using Syncfusion.SfRotator.XForms;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -95,8 +93,8 @@ namespace Siessi.ViewModels.Onboarding
 
         public bool IsSkipButtonVisible
         {
-            get => isSkipButtonVisible; 
-            
+            get => isSkipButtonVisible;
+
             set => SetProperty(ref isSkipButtonVisible, value);
         }
 
@@ -110,7 +108,7 @@ namespace Siessi.ViewModels.Onboarding
 
         public int SelectedIndex
         {
-            get => selectedIndex; 
+            get => selectedIndex;
             set => SetProperty(ref selectedIndex, value);
         }
 

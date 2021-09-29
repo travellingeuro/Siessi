@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Siessi.Models
+﻿namespace Siessi.Models
 {
     public class Item
     {

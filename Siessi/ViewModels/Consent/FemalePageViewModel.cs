@@ -20,18 +20,18 @@ namespace Siessi.ViewModels.Consent
         #region fields
         public Models.Consent Consent { get; }
         public Models.Profile Profile { get; }
-        
+
         #endregion
 
         #region Constructor
 
-        public  FemalePageViewModel()
+        public FemalePageViewModel()
         {
             Title = "Da tu consentimiento";
 
             Consent = DataService.GetConsent();
             Consent.SaveConsentAction = SaveConsent;
-            
+
             Profile = DataService.GetProfile();
 
             this.GenerateCommand = new AsyncCommand(this.OnGenerateMethod);
@@ -53,8 +53,8 @@ namespace Siessi.ViewModels.Consent
 
         private async Task<Location> MyLocation()
         {
-            Location location= await DataService.GetLocation();
-            return location;              
+            Location location = await DataService.GetLocation();
+            return location;
         }
 
 
@@ -166,7 +166,7 @@ namespace Siessi.ViewModels.Consent
             {
                 IsQRVisible = false;
                 OnPropertyChanged(nameof(IsQRVisible));
-                return false; 
+                return false;
             });
         }
 

@@ -14,9 +14,9 @@ namespace Siessi.ViewModels.Consent
         bool isAnalizing = true;
         bool isScanning = true;
         Result result;
-        Models.Consent consent; 
+        Models.Consent consent;
         public Models.Profile Profile { get; }
-        
+
         #endregion
 
         #region Contructor
@@ -26,7 +26,7 @@ namespace Siessi.ViewModels.Consent
             Title = "Escanea el código QR para obtener el solo sí es sí";
 
             Profile = DataService.GetProfile();
-            
+
             this.OnBarcodeScannedCommand = new MvvmHelpers.Commands.Command(OnQrScannedMethod);
         }
 
@@ -41,16 +41,16 @@ namespace Siessi.ViewModels.Consent
         #region Methods
         private void OnQrScannedMethod()
         {
-            
+
             if (!isProcessing)
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     isProcessing = true;
                     isAnalizing = false;
-                    
+
                     OnPropertyChanged(nameof(IsAnalizing));
-                    
+
                     await ManageConsent(result.Text);
 
                     isProcessing = false;
@@ -62,7 +62,7 @@ namespace Siessi.ViewModels.Consent
             }
         }
 
-        private async Task  ManageConsent(string text)
+        private async Task ManageConsent(string text)
         {
             //Checks
             if (IsBusy)
@@ -90,7 +90,7 @@ namespace Siessi.ViewModels.Consent
 
             }
             catch (Newtonsoft.Json.JsonException Exception)
-            {                
+            {
                 await DisplayAlert("Solo se aceptan QR de esta app", Exception.Message);
                 return;
             }

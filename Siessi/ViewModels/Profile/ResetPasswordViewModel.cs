@@ -1,8 +1,6 @@
 ﻿using MvvmHelpers.Commands;
-using Siessi.Views.Profile;
 using System;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace Siessi.ViewModels.Profile
@@ -37,7 +35,7 @@ namespace Siessi.ViewModels.Profile
             Profile = DataService.GetProfile();
             Profile.SaveProfileAction = SaveProfile;
 
-            SubmitCommand = new AsyncCommand(OnSubmitMethod,DisableButton);             
+            SubmitCommand = new AsyncCommand(OnSubmitMethod, DisableButton);
         }
 
 
@@ -109,11 +107,11 @@ namespace Siessi.ViewModels.Profile
                 return;
 
             if (string.IsNullOrWhiteSpace(NewPassword) || string.IsNullOrWhiteSpace(ConfirmPassword))
-            { 
+            {
                 await DisplayAlert("Error", "La contraseña no puede estar en blanco");
                 return;
             }
-               
+
             try
             {
                 IsBusy = true;

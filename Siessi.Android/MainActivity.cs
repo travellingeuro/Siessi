@@ -20,7 +20,7 @@ namespace Siessi.Droid
             ToolbarResource = Resource.Layout.Toolbar;
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(AppSettings.SyncFusionLicense);
 
-            
+
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

@@ -1,7 +1,4 @@
-﻿using Siessi.Models;
-using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -20,21 +17,21 @@ namespace Siessi.ViewModels
         private string message;
         private DateTime birthDate;
         private string id;
-       
+
         public string Id
         {
             get => id;
-            
+
             set => SetProperty(ref id, value);
         }
 
-        
+
         public string Model
         {
             get => model;
             set => SetProperty(ref model, value);
         }
-                
+
         public string Manufacturer
         {
             get => manufacturer;
@@ -48,7 +45,7 @@ namespace Siessi.ViewModels
             set => SetProperty(ref deviceName, value);
         }
 
-       
+
         public Location Location
         {
             get => location;
@@ -74,7 +71,7 @@ namespace Siessi.ViewModels
             set => SetProperty(ref message, value);
         }
 
-       
+
         public DateTime BirthDate
         {
             get => birthDate;
@@ -116,7 +113,7 @@ namespace Siessi.ViewModels
             }
             catch (Exception)
             {
-                await DisplayAlert ("Failed to Load Item", "Failed to Load Item");
+                await DisplayAlert("Failed to Load Item", "Failed to Load Item");
             }
         }
     }
