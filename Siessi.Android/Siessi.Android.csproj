@@ -58,6 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="MarcTron.Admob">
+      <Version>1.6.5</Version>
+    </PackageReference>
     <PackageReference Include="MonkeyCache.FileStore">
       <Version>1.5.2</Version>
     </PackageReference>
@@ -99,6 +102,9 @@
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRotator">
       <Version>19.2.0.62</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
+      <Version>2.3.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Migration">
       <Version>1.0.8</Version>

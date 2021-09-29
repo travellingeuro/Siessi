@@ -6,6 +6,7 @@
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:control="clr-namespace:Siessi.Controls"
     xmlns:viewModel="clr-namespace:Siessi.ViewModels.Consent" 
+    xmlns:ads="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
     xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" 
     xmlns:zxcm="clr-namespace:ZXing.Common;assembly=zxing.portable"
     BackgroundColor="{DynamicResource Gray-100}"
@@ -167,9 +168,13 @@
                     Text="Crear QR"
                     WidthRequest="200" />
 
-
+                <StackLayout>
+                    <ads:MTAdView HeightRequest="40" />
+                </StackLayout>
 
             </StackLayout>
+            
+            
 
         </ScrollView>
 

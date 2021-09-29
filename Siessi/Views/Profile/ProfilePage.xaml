@@ -8,6 +8,7 @@
              xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
              xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:ads="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
              x:Class="Siessi.Views.Profile.ProfilePage"
              NavigationPage.HasNavigationBar="False"
              Title="{Binding Title}">
@@ -35,6 +36,7 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
@@ -120,7 +122,10 @@
                     </listView:SfListView>
                 </border:SfBorder>
 
-                
+                <StackLayout Grid.Row="2">
+                     <!--Place the Admob controls here--> 
+                    <ads:MTAdView HeightRequest="40"/>
+                </StackLayout>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

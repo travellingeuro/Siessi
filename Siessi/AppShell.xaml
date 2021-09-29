@@ -7,7 +7,7 @@
        xmlns:about="clr-namespace:Siessi.Views.About"
       
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-       mc:Ignorable="d"
+       
        Title="Siessi"
        x:Class="Siessi.AppShell">
 

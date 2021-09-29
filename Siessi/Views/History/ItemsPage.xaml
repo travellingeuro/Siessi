@@ -9,7 +9,7 @@ xmlns:sfAvatarView="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusi
              xmlns:control="clr-namespace:Siessi.Controls"
              xmlns:helper="clr-namespace:Siessi.Helpers"
              xmlns:local="clr-namespace:Siessi.ViewModels"  
-             xmlns:model="clr-namespace:Siessi.Models"  
+             xmlns:model="clr-namespace:Siessi.Models"               
              x:Name="BrowseItemsPage">
 
     <ContentPage.Resources>
@@ -29,28 +29,7 @@ xmlns:sfAvatarView="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusi
                 SelectionMode="None">
             <CollectionView.ItemTemplate>
 
-                <!--Data Template: original-->
-                <!--<DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:Consent">
-                        <Label Text="{Binding Name}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                        <Label Text="{Binding Message}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ConsentTapped}"		
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                </DataTemplate>-->
-
-                <!--Data Template: Alternative-->
+                 <!--Data Template: Alternative-->
                 <DataTemplate>
                     <StackLayout Padding="10" x:DataType="model:Consent">
                         <control:CustomShadowFrame
@@ -95,7 +74,7 @@ xmlns:sfAvatarView="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusi
                                         HeightRequest="48"
                                         WidthRequest="48"
                                         CornerRadius="25"
-                                        AvatarName="{Binding Name}">                                        
+                                        AvatarName="{Binding Name}">
                                     </sfAvatarView:SfAvatarView>
 
                                 </border:SfBorder>
@@ -153,9 +132,7 @@ xmlns:sfAvatarView="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusi
                         </control:CustomShadowFrame>
                     </StackLayout>
                 </DataTemplate>
-
-
             </CollectionView.ItemTemplate>
-        </CollectionView>
+        </CollectionView>        
     </RefreshView>
 </ContentPage>

@@ -4,6 +4,7 @@
      xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModel="clr-namespace:Siessi.ViewModels.Consent"
+    xmlns:ads="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
     xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
     BackgroundColor="{DynamicResource Gray-100}"
     Title="{Binding Title}"    
@@ -83,16 +84,6 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <!--  Profile Image  -->
-                    <!--<border:SfBorder
-                        BorderWidth="0"
-                        CornerRadius="24"
-                        HeightRequest="48"
-                        Style="{StaticResource SfBorderStyle}"
-                        WidthRequest="48">
-                        <Image x:Name="ProfileImage" BackgroundColor="{DynamicResource Gray-200}" />
-                    </border:SfBorder>-->
-
                     <StackLayout
                         Grid.Column="1"
                         Orientation="Horizontal"
@@ -117,14 +108,6 @@
 
                         </StackLayout>
 
-                        <!--  Product Rating  --><!--
-                        <rating:SfRating
-                            HorizontalOptions="EndAndExpand"
-                            RatingSettings="{StaticResource RatingSettings}"
-                            Style="{StaticResource SfRatingStyle}"
-                            VerticalOptions="Start"
-                            Value="5" />-->
-
                     </StackLayout>
 
                     <!--  Product Review  -->
@@ -141,8 +124,10 @@
                         <TapGestureRecognizer Command="{Binding ProfileCommand}" CommandParameter="{Binding .}" />
                     </Grid.GestureRecognizers>
                 </Grid>
-
             </Grid>
+            <StackLayout>
+                <ads:MTAdView HeightRequest="40"/>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -48,5 +48,9 @@
 	<string>Incluye tu localizacion para mayor seguridad</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Need your face / finger to provide your &quot;solo si es si&quot; consent</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-9800707284712065~8427648848</string>
+	<key>GADIsAdManagerApp</key>
+	<true/>
 </dict>
 </plist>

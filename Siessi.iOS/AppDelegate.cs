@@ -17,6 +17,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Google.MobileAds;
 
 namespace Siessi.iOS
 {
@@ -55,9 +56,13 @@ namespace Siessi.iOS
             SfGradientViewRenderer.Init();
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
             LoadApplication(new App());
-           
-
+            MobileAds.SharedInstance.Start(CompletionHandler);
             return base.FinishedLaunching(app, options);
+        }
+
+        private void CompletionHandler(InitializationStatus status)
+        {
+            
         }
     }
 }

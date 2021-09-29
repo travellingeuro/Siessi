@@ -40,5 +40,19 @@ namespace siessi.Settings
             set => Preferences.Set(nameof(UserPassword), value);
         }
 
+        //google ads id's
+        const string defaultAndroidAds = "ca-app-pub-9800707284712065/2081732341";
+        public static string AndroidAds 
+        { 
+            get => Preferences.Get(nameof(AndroidAds), defaultAndroidAds);
+            set => Preferences.Set(nameof(AndroidAds), value);
+        }
+        const string defaultIosAds = "ca-app-pub-9800707284712065/6272737725";
+        public static string IosAds
+        { 
+            get => Preferences.Get(nameof(IosAds), defaultIosAds);
+            set => Preferences.Set(nameof(IosAds), value);
+        }
+        
     }
 }

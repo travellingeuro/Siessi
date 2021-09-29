@@ -98,8 +98,9 @@
                     Text="{Binding Location.Longitude, StringFormat='Longitud: {0:N3}'}" />
                 <Label
                     Style="{StaticResource LabelStyle}"
-                    Text="{Binding Location.Latitude, StringFormat='Latitud: {0:N3}'}" />     
-            </StackLayout>
+                    Text="{Binding Location.Latitude, StringFormat='Latitud: {0:N3}'}" />    
+                
+            </StackLayout>            
         </ScrollView>
 
     </ContentPage.Content>
