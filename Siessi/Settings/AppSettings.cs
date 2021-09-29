@@ -57,9 +57,23 @@ namespace siessi.Settings
         //Synfusion Keys
         const string defaultSyncKey = "NTA3MTEwQDMxMzkyZTMyMmUzMEpZUGdKU1c1WXVXRTZsamRNK0QyOGpEdlVMMWFrQ2t3ODJKQXc3Y3lFM0E9";
         public static string SyncFusionLicense 
-        { 
-            get=>Preferences.Get(nameof(SyncFusionLicense), defaultSyncKey); 
-            set=> Preferences.Set(nameof(SyncFusionLicense), value); 
+        {
+            get => Preferences.Get(nameof(SyncFusionLicense), defaultSyncKey);
+            set => Preferences.Set(nameof(SyncFusionLicense), value);
+        }
+
+        //AppCenter Keys
+        const string defaultAppCenteriOS = "4ddd87d7-9d70-4e7b-8308-b105f4cec0e0";
+        public static string AppCenteriOS 
+        {
+            get => Preferences.Get(nameof(AppCenteriOS), defaultAppCenteriOS);
+            set => Preferences.Set(nameof(AppCenteriOS), value);
+        }
+        const string defaultAppCenterAndroid = "2ceab2d9-a9dd-4e39-b37a-09c1c0275081";
+        public static string AppCenterAndroid 
+        {
+            get => Preferences.Get(nameof(AppCenterAndroid), defaultAppCenterAndroid);
+            set => Preferences.Set(nameof(AppCenterAndroid), value);
         }
     }
 }
