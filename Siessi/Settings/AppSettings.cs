@@ -53,6 +53,13 @@ namespace siessi.Settings
             get => Preferences.Get(nameof(IosAds), defaultIosAds);
             set => Preferences.Set(nameof(IosAds), value);
         }
-        
+
+        //Synfusion Keys
+        const string defaultSyncKey = "NTA3MTEwQDMxMzkyZTMyMmUzMEpZUGdKU1c1WXVXRTZsamRNK0QyOGpEdlVMMWFrQ2t3ODJKQXc3Y3lFM0E9";
+        public static string SyncFusionLicense 
+        { 
+            get=>Preferences.Get(nameof(SyncFusionLicense), defaultSyncKey); 
+            set=> Preferences.Set(nameof(SyncFusionLicense), value); 
+        }
     }
 }

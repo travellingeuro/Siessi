@@ -18,6 +18,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 using Google.MobileAds;
+using siessi.Settings;
 
 namespace Siessi.iOS
 {
@@ -36,6 +37,7 @@ namespace Siessi.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(AppSettings.SyncFusionLicense);
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
             SfRatingRenderer.Init();

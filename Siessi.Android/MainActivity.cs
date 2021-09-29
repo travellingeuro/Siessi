@@ -5,6 +5,7 @@ using Android.Gms.Ads;
 using Android.OS;
 using Android.Runtime;
 using Plugin.Fingerprint;
+using siessi.Settings;
 
 namespace Siessi.Droid
 {
@@ -17,6 +18,7 @@ namespace Siessi.Droid
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(AppSettings.SyncFusionLicense);
 
             
             base.OnCreate(savedInstanceState);
