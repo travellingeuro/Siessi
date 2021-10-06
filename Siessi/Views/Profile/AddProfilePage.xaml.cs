@@ -39,5 +39,11 @@ namespace Siessi.Views.Profile
         {
             this.cameraView.CameraOptions = (bool)e.NewValue ? CameraOptions.Back : CameraOptions.Front;
         }
+
+        //Este metodo se ejecuta asi hasta que se arregle XCT Mediacapture Event in Release mode
+        private void cameraView_MediaCaptured(object sender, MediaCapturedEventArgs e)
+        {
+            vm?.PictureTakenCommand?.ExecuteAsync(e);
+        }
     }
 }

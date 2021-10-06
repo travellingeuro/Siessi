@@ -55,7 +55,7 @@ namespace siessi.Settings
         }
 
         //Synfusion Keys
-        const string defaultSyncKey = "NTA3MTEwQDMxMzkyZTMyMmUzMEpZUGdKU1c1WXVXRTZsamRNK0QyOGpEdlVMMWFrQ2t3ODJKQXc3Y3lFM0E9";
+        const string defaultSyncKey = "NTExNzkyQDMxMzkyZTMzMmUzMEM1bEFkZmtXU0ZmTTdWblNQblNOVCtmTEpDMDdWd3RzOUtRRk5SeE5mMnc9";
         public static string SyncFusionLicense
         {
             get => Preferences.Get(nameof(SyncFusionLicense), defaultSyncKey);

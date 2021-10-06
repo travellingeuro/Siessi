@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 [assembly: Dependency(typeof(DataService))]
 namespace Siessi.Services
@@ -20,6 +21,7 @@ namespace Siessi.Services
         object locker = new object();
         CultureInfo myCI;
 
+        [Preserve(AllMembers = true)]
         public DataService()
         {
             Barrel.ApplicationId = AppInfo.PackageName;
@@ -29,12 +31,12 @@ namespace Siessi.Services
 
         #region method_for_Profile       
 
-        public Profile GetProfile()
+        public Models.Profile GetProfile()
         {
             lock (locker)
             {
-                var profile = barrel.Get<Profile>("profile");
-                profile ??= new Profile
+                var profile = barrel.Get<Models.Profile>("profile");
+                profile ??= new Models.Profile
                 {
 
                     Category = string.Empty,
@@ -50,7 +52,7 @@ namespace Siessi.Services
             }
         }
 
-        public void SaveProfile(Profile profile)
+        public void SaveProfile(Models.Profile profile)
         {
             lock (locker)
             {
@@ -58,7 +60,7 @@ namespace Siessi.Services
                 {
                     SavePreviousProfile();
                 }
-                barrel.Add<Profile>("profile", profile, TimeSpan.FromDays(1260));
+                barrel.Add<Models.Profile>("profile", profile, TimeSpan.FromDays(1260));
                 AppSettings.UserPassword = profile.Password;
                 AppSettings.HasProfile = true;
             }
@@ -67,9 +69,9 @@ namespace Siessi.Services
 
         public void SavePreviousProfile()
         {
-            var previousprofile = barrel.Get<Profile>("profile");
+            var previousprofile = barrel.Get<Models.Profile>("profile");
             var now = DateTime.Now.ToString();
-            barrel.Add<Profile>($"validuntil_{now}", previousprofile, TimeSpan.FromDays(1260));
+            barrel.Add<Models.Profile>($"validuntil_{now}", previousprofile, TimeSpan.FromDays(1260));
         }
         #endregion
 
@@ -79,9 +81,9 @@ namespace Siessi.Services
         {
             var consent = new Consent
             {
-                Model = DeviceInfo.Model,
-                Manufacturer = DeviceInfo.Manufacturer,
-                DeviceName = DeviceInfo.Name,
+                Model = Xamarin.Essentials.DeviceInfo.Model,
+                Manufacturer = Xamarin.Essentials.DeviceInfo.Manufacturer,
+                DeviceName = Xamarin.Essentials.DeviceInfo.Name,
                 Location = new Location(),
                 TimeStamp = DateTimeOffset.Now,
                 Id = Guid.NewGuid().ToString()
@@ -155,19 +157,19 @@ namespace Siessi.Services
             }
             catch (FeatureNotSupportedException fnsEx)
             {
-                await Application.Current.MainPage.DisplayAlert("Faild", fnsEx.Message, "OK");
+                await Application.Current.MainPage.DisplayAlert("Failed", fnsEx.Message, "OK");
                 var location = new Location(0, 0);
                 return location;
             }
             catch (PermissionException pEx)
             {
-                await Application.Current.MainPage.DisplayAlert("Faild", pEx.Message, "OK");
+                await Application.Current.MainPage.DisplayAlert("Failed", pEx.Message, "OK");
                 var location = new Location(0, 0);
                 return location;
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Faild", ex.Message, "OK");
+                await Application.Current.MainPage.DisplayAlert("Failed", ex.Message, "OK");
                 var location = new Location(0, 0);
                 return location;
             }

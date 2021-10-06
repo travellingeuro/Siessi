@@ -41,21 +41,23 @@ xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Sy
                 <!--<busyindicator:SfBusyIndicator x:Name="busyindicator" IsVisible="{Binding IsBusy,Mode=TwoWay}" IsEnabled="{Binding IsBusy}" />-->
 
                 <!--Camera View-->
-                <xct:CameraView
+                <xct:CameraView 
                 x:Name="cameraView"
+                MediaCaptured="cameraView_MediaCaptured"
                 CaptureMode="Photo"
                 CameraOptions="Front"                    
                 FlashMode="Off" 
                 Zoom="1"
-                 MinimumWidthRequest="350"
+                MinimumWidthRequest="350"
                 IsVisible="{Binding ShowPictureViewer}"
                 HorizontalOptions="CenterAndExpand"                 
                 HeightRequest="350"                      
                 VerticalOptions="FillAndExpand">
-                    <xct:CameraView.Behaviors>
+                    <!--Este metodo se ejecuta desde codebehind hasta que se arregle XCT-->
+                    <!--<xct:CameraView.Behaviors>
                         <xct:EventToCommandBehavior EventName="MediaCaptured"
                                                     Command="{Binding PictureTakenCommand}"/>
-                    </xct:CameraView.Behaviors>
+                    </xct:CameraView.Behaviors>-->
                 </xct:CameraView>
                 
                 <!--Take Picture, change camera labels-->
